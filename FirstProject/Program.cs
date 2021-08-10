@@ -133,6 +133,10 @@ namespace FirstProject
             }
         }
 
+        public static int trapezoidArea(int a, int b, int h) {
+            return ((a + b) / 2) * h;
+        }
+
         static string typeVerifier(object value) {
 
             if (value is string)
