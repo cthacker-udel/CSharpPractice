@@ -51,6 +51,62 @@ namespace FirstProject
 
             Console.WriteLine(3.ToString());
 
+            int maxVal = UInt16.MaxValue;
+
+            float floatPI = 3.14f;
+
+            Console.WriteLine(floatPI);
+
+            double nan = Double.NaN;
+            Console.WriteLine(nan);
+
+
+            int a = 10;
+            int b = 20;
+
+            bool aGb = a > b;
+            bool aLb = a < b;
+            bool aEb = a == b;
+
+            if (aGb)
+            {
+                Console.WriteLine("A is greater than B");
+            }
+            else if (aLb)
+            {
+                Console.WriteLine("A is less than B");
+            }
+            else 
+            {
+                Console.WriteLine("A is equal to B");
+            }
+
+            string firstName = "Cameron";
+            string lastName = "Thacker";
+
+            Console.WriteLine("Your Name is : " + firstName + " " + lastName);
+
+            object refInt = 10;
+            object refStr = "Object reference to a string";
+
+            int? nullInt = 10;
+            int? nullInt2 = null;
+
+            string? str3 = "str1";
+            string? str4 = null;
+
+            double? dbl1 = 1.0;
+            double? dbl2 = null;
+
+            if (dbl1.HasValue)
+            {
+                Console.WriteLine("Double1 has a value of " + dbl1);
+            }
+            else {
+                Console.WriteLine("Double1 has a null value");
+            }
+
+
 
 
 
