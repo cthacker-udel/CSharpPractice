@@ -107,9 +107,30 @@ namespace FirstProject
             }
 
 
+        }
 
+        public static bool isEven(int number) {
+            return number % 2 == 0;
+        }
 
+        public static bool isOdd(int number) {
+            return number % 2 != 0;
+        }
 
+        public static bool isFizzBuzz(int number) {
+            return number % 5 == 0 && number % 7 == 0;
+        }
+
+        public static bool thirdBit(int number) {
+            string binaryString = Convert.ToString(number, 2);
+            if (binaryString.Length > 2)
+            {
+                // check if third bit is 1
+                return binaryString[2].Equals("1");
+            }
+            else {
+                return false;
+            }
         }
 
         static string typeVerifier(object value) {
