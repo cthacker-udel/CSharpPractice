@@ -180,7 +180,9 @@ namespace FirstProject
 
             //printCards();
 
-            fibN(10);
+            //fibN(10);
+
+            Console.Write(nFactorialK(5, 7));
 
      
 
@@ -265,6 +267,32 @@ namespace FirstProject
                 Console.Write(String.Format("{0} ", fib[i]));
             }
             Console.WriteLine("");
+
+        }
+
+
+        public static int factorial(int num) {
+
+            if (num == 1)
+            {
+                return 1;
+            }
+            else {
+                return factorial(num - 1) * num;
+            }
+
+        }
+
+        public static double nFactorialK(int n, int k) {
+
+            return (double)factorial(n) / (double)factorial(k);
+
+        }
+
+        public static double nFactorialKV2(int n, int k) {
+
+            return ((factorial(n) * factorial(k)) / ((double)factorial(n - k)));
+
 
         }
 
