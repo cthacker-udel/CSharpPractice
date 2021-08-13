@@ -107,6 +107,152 @@ namespace FirstProject
             }
 
 
+            int[] arr = { 1, 2, 3, 4 };
+
+            foreach (int elem in arr) {
+                Console.WriteLine(elem);
+            }
+
+            int total = 0;
+
+            foreach (int elem in arr) {
+                total += elem;
+            }
+            Console.WriteLine(total);
+
+            /*
+             * 
+             * Print triangle
+             */
+
+            Console.WriteLine("Enter the number of lines of triangle to print");
+
+            int lines = int.Parse(Console.ReadLine());
+
+            for (int i = 1; i <= lines; i++) {
+                for (int j = 1; j <= i; j++) {
+                    Console.Write(j);
+                }
+                Console.WriteLine();
+            }
+
+            int m;
+            int n;
+            do
+            {
+                Console.WriteLine("Enter the beginning of the interval");
+                m = int.Parse(Console.ReadLine());
+                Console.WriteLine("Enter the end of the interval");
+                n = int.Parse(Console.ReadLine());
+            } while (m < 0 || n < 0);
+
+            if (n < m) {
+                int temp = m;
+                m = n;
+                n = temp;
+            }
+
+            while (m <= n) {
+                if (isPrime(m)) {
+                    Console.WriteLine(m);
+                }
+                m++;
+            }
+
+            Console.WriteLine("Print if number is lucky, input must be 4 digit number");
+            do
+            {
+                m = int.Parse(Console.ReadLine());
+            } while (m < 1000 || m > 9999);
+
+            // convert to string
+            string mString = m.ToString();
+            int m1 = mString[0];
+            int m2 = mString[1];
+            int m3 = mString[2];
+            int m4 = mString[3];
+
+            if (m1 + m2 == (m3 + m4))
+            {
+                Console.WriteLine(m + " is a lucky number!");
+            }
+            else {
+                Console.WriteLine(m + " is not a lucky number!");
+            }
+
+            printMinMax();
+
+     
+
+
+        }
+
+        public static void print1ToN(int n) {
+
+            for (int i = 1; i <= n; i++) {
+                Console.WriteLine(i);
+            }
+
+        }
+
+        public static void print1ToNNot1Or3(int n) {
+            for (int i = 1; i <= n; i++)
+            {
+
+                if (i % 3 == 0 && i % 7 == 0)
+                {
+                    continue;
+                }
+                else {
+                    Console.WriteLine(i);
+                }
+
+            }
+        }
+
+        public static void printMinMax()
+        {
+            ulong r;
+            ulong max = 1;
+            ulong min = 1;
+            Console.WriteLine("Enter numbers to generate max and min of numbers entered, enter 0 to end");
+            do
+            {
+                Console.WriteLine("Enter number");
+                r = ulong.Parse(Console.ReadLine());
+                min = Math.Min(r, min);
+                max = Math.Max(r, max);
+            } while (r != 0);
+
+            Console.WriteLine("The max variable is : " + max);
+            Console.WriteLine("The min variable is : " + min);
+
+        }
+
+
+
+
+
+        public static bool isPrime(int number) {
+
+            if (number <= 2)
+            {
+                return true;
+            }
+            else if (number % 2 == 0 || number % 3 == 0 || number % 5 == 0)
+            {
+                return false;
+            }
+            else {
+                for (int i = 2; i < ((int)Math.Sqrt(number)); i++) {
+                    if (number % i == 0) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+
         }
 
         public static bool isEven(int number) {
@@ -135,6 +281,37 @@ namespace FirstProject
 
         public static int trapezoidArea(int a, int b, int h) {
             return ((a + b) / 2) * h;
+        }
+
+        public static void rectanglePrint(int width, int length) {
+            Console.WriteLine("Area is : " + (width + length));
+            Console.WriteLine("Perimeter is : " + (2 * (length + width)));
+        }
+
+        public static void moonWeight(int weight) {
+            double gravityMoon = 9.18 / .17;
+            weight = weight - (int)(weight * gravityMoon);
+            Console.WriteLine("The weight on the moon is : " + weight + "lbs");
+        }
+
+        public string calcFourDigitNumber(int number) {
+            string numStr = Convert.ToString(number);
+            int digitSum = 0;
+            for (int i = 0; i < numStr.Length; i++) {
+                char theDigit = numStr[i];
+                digitSum += Int32.Parse(theDigit+"");
+            }
+            Console.WriteLine("The sum of the digits of " + number + " is : " + digitSum);
+            for (int i = numStr.Length - 1; i >= 0; i--) {
+                Console.Write(numStr[i]);
+            }
+            char firstChar = numStr[0]; // 1234
+            string newStr = numStr[numStr.Length - 1] + numStr.Substring(1, numStr.Length - 2) + firstChar;
+            string newStr2 = numStr[0] + "" + numStr[2] + numStr[1] + numStr[numStr.Length - 1];
+            Console.WriteLine(newStr);
+            Console.WriteLine(newStr2);
+            return "";
+        
         }
 
         static string typeVerifier(object value) {
