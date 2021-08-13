@@ -14,11 +14,8 @@ namespace FirstProject
 
         static void Main(string[] args)
         {
+
             /*
-             * 
-             * Excercise 1
-             * 
-             */
 
             sbyte sbyte1;
             byte byte1;
@@ -120,10 +117,6 @@ namespace FirstProject
             }
             Console.WriteLine(total);
 
-            /*
-             * 
-             * Print triangle
-             */
 
             Console.WriteLine("Enter the number of lines of triangle to print");
 
@@ -182,6 +175,10 @@ namespace FirstProject
 
             printMinMax();
 
+            */
+
+            printCards();
+
      
 
 
@@ -226,6 +223,22 @@ namespace FirstProject
 
             Console.WriteLine("The max variable is : " + max);
             Console.WriteLine("The min variable is : " + min);
+
+        }
+
+        public static void printCards() {
+
+            string[] suits = { "Clubs", "Hearts", "Spades", "Diamonds" };
+            string[] ranks = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace" };
+
+            for (int i = 0; i < suits.Length; i++) {
+                for (int j = 0; j < ranks.Length; j++) {
+                    Console.WriteLine(String.Format("{0} of {1}", ranks[j], suits[i]));
+                }
+            }
+
+
+
 
         }
 
