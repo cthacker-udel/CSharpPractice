@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Collections.Generic;
 
 namespace FirstProject
 {
@@ -177,7 +178,9 @@ namespace FirstProject
 
             */
 
-            printCards();
+            //printCards();
+
+            fibN(10);
 
      
 
@@ -239,6 +242,29 @@ namespace FirstProject
 
 
 
+
+        }
+
+        public static void fibN(int n) {
+            int start = 1;
+            List<Int32> fib = new List<Int32>();
+            fib.Add(1);
+            while (start <= n) {
+                if (fib.Count < 2)
+                {
+                    fib.Add(1);
+                    start++;
+                }
+                else {
+                    fib.Add(fib[start - 2] + fib[start - 1]);
+                    start++;
+                }
+            }
+
+            for (int i = 0; i < fib.Count; i++) {
+                Console.Write(String.Format("{0} ", fib[i]));
+            }
+            Console.WriteLine("");
 
         }
 
