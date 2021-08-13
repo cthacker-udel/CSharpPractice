@@ -292,6 +292,7 @@ namespace FirstProject
         public static double nFactorialKV2(int n, int k) {
 
             return ((factorial(n) * factorial(k)) / ((double)factorial(n - k)));
+            //
 
 
         }
