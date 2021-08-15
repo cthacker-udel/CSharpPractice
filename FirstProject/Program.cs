@@ -285,6 +285,8 @@ namespace FirstProject
                 Console.WriteLine("{0}", "");
             }
 
+            // remember to do exercises chapter 7
+
 
 
      
