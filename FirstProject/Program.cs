@@ -182,11 +182,45 @@ namespace FirstProject
 
             //fibN(10);
 
-            Console.Write(nFactorialK(5, 7));
+            //Console.Write(nFactorialK(5, 7));
+
+            int[] array = new int[6];
+
+            int[] initializeArr = { 1, 2, 3, 4, 5 };
+
+            string[] daysOfTheWeek = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+
+            initializeArr[0] = 100;
+
+            for (int i = 0; i < array.Length; i++) {
+                array[i] = i + 1;
+            }
+
+            int[] revInitArr = new int[5];
+
+            for (int i = initializeArr.Length - 1,j=0; i >= 0 && j < initializeArr.Length; i--,j++) {
+                revInitArr[j] = initializeArr[i];
+            }
+
 
      
 
 
+        }
+
+        public static bool isArrSymmetric(int[] arr, int len) {
+            int middle = len / 2;
+            for (int i = 0; i < middle; i++) {
+                if (arr[i] == arr[len - (i + 1)])
+                {
+                    // valid
+                    continue;
+                }
+                else {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public static void print1ToN(int n) {
