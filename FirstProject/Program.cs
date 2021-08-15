@@ -294,6 +294,33 @@ namespace FirstProject
 
         }
 
+        public static int[] ArrayOfMultiples(int num, int length) {
+            int[] arr = new int[length];
+            for (int i = 0; i < length; i++) {
+                arr[i] = num * (i + 1);
+            }
+            return arr;
+        }
+
+        public static int CounterpartCharCode(char letter) {
+            if (Char.ToUpper(letter) == letter)
+            {
+                letter = Char.ToLower(letter);
+                // letter is uppercase
+                return ((int)letter);
+            }
+            else {
+                letter = Char.ToUpper(letter);
+                return ((int)letter);
+            }
+        }
+
+        public static double getRectangleArea(double width, double height) {
+            double area = width * height;
+            Console.WriteLine("The area is : {0}",area);
+            return area;
+        }
+
         public static bool isArrSymmetric(int[] arr, int len) {
             int middle = len / 2;
             for (int i = 0; i < middle; i++) {
