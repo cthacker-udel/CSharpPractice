@@ -211,6 +211,81 @@ namespace FirstProject
                 Console.WriteLine(elem);
             }
 
+            int[,] twoDimensionalArray;
+
+            int[,,] threeDimensionalArray;
+
+            string[,,] stringMultiDimensional;
+
+            int[,] mallocInt = new int[3, 2];
+
+            int[,,] mallocThreeInt = new int[3, 2, 3];
+
+            int[,] matrix = {
+                {1,2,3,4},
+                {5,6,7,8},
+            };
+
+            Console.WriteLine(matrix[0,2]);
+
+
+            int[,,] matrix3d =
+            {
+                {
+
+                    {1,2,3,4},
+                    {5,6,7,8},
+
+                },
+                {
+                    {9,10,11,12},
+                    {13,14,15,16},
+
+                },
+
+
+            };
+
+            Console.WriteLine(matrix3d[0, 0, 2]);
+
+            matrix.GetLength(0); // get # rows
+            matrix.GetLength(1); // get # colums
+
+            int[,] printMatrix =
+            {
+                {1,2,3,4},
+                {5,6,7,8},
+                {9,10,11,12},
+
+
+            };
+
+            for (int i = 0; i < printMatrix.GetLength(0); i++) {
+                for (int j = 0; j < printMatrix.GetLength(1); j++) {
+                    Console.Write(printMatrix[i, j]);
+                }
+                Console.WriteLine("");
+            }
+
+            int[][] jaggedArray;
+            jaggedArray = new int[2][];
+            jaggedArray[0] = new int[5];
+            jaggedArray[1] = new int[7];
+
+            for (int i = 0; i < 2; i++) {
+                for (int j = 0; j < jaggedArray[i].Length; j++) {
+                    jaggedArray[i][j]++;
+                }
+            }
+
+            for (int i = 0; i < 2; i++) {
+                for (int j = 0; j < jaggedArray[i].Length; j++) {
+                    Console.Write("{0}", jaggedArray[i][j]);
+                }
+                Console.WriteLine("{0}", "");
+            }
+
+
 
      
 
