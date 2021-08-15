@@ -202,6 +202,15 @@ namespace FirstProject
                 revInitArr[j] = initializeArr[i];
             }
 
+            foreach (int elem in initializeArr) {
+                Console.WriteLine(elem);
+            }
+
+            Console.WriteLine("\nThe days of the week are : \n");
+            foreach (string elem in daysOfTheWeek) {
+                Console.WriteLine(elem);
+            }
+
 
      
 
