@@ -405,6 +405,80 @@ namespace FirstProject
             return -1;
         }
 
+        public static void printReverseNum(int number) {
+            string numStr = number.ToString();
+            for (int i = numStr.Length - 1; i >= 0; i--) {
+                Console.Write(numStr[i]);
+            }
+            Console.WriteLine("\n");
+        }
+
+        public static long[] sumTwoLong(long[] num1, long[] num2) {
+
+            int minLen = Math.Min(num1.Length, num2.Length);
+
+            long[] arr = new long[100000];
+            long carry = 0;
+            int finalIndex = minLen == num1.Length ? num2.Length : minLen == num2.Length ? num1.Length : num2.Length;
+
+            for (int i = 0; i < minLen; i++) {
+                long addition = num1[i] + num2[i];
+                if (addition >= 10)
+                {
+                    long cryAmt = Math.Abs(addition - 9);
+                    if (carry > 0)
+                    {
+                        // carry has already been used, still in use
+                        carry += cryAmt;
+                    }
+                    // check if carry already has been initialized
+                    // else, assign carry
+                    else
+                    {
+                        carry = Math.Abs(addition - 9);
+                    }
+                    arr[i] = 0;
+                }
+                else {
+                    if (carry > 0) {
+                        addition += carry;
+                        if (addition >= 10)
+                        {
+                            long cryAmt = Math.Abs(addition - 9);
+                            carry += cryAmt;
+                            addition -= cryAmt;
+                            arr[i] = 0;
+                        }
+                        else
+                        {
+                            arr[i] = addition;
+                        }
+                    }
+                }
+            }
+            if (minLen == num1.Length)
+            {
+                for (int i = finalIndex; i < num2.Length; i++)
+                {
+                    arr[i] = num2[i];
+                }
+                return arr;
+            }
+            else if (minLen == num2.Length)
+            {
+                for (int i = finalIndex; i < num2.Length; i++)
+                {
+                    arr[i] = num1[i];
+                }
+                return arr;
+            }
+            else {
+                return arr;
+            }
+
+
+        }
+
 
         public static string displayTime()
         {
