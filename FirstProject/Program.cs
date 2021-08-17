@@ -287,6 +287,7 @@ namespace FirstProject
 
             // remember to do exercises chapter 
 
+            Console.WriteLine(sumArgs(1, 2, 3, 10, 20));
 
         }
 
@@ -304,6 +305,15 @@ namespace FirstProject
                 concattedString += strings[i];
             }
             return concattedString;
+        }
+
+        public double calculateAverage(params int[] args) {
+            double avg = 0.0;
+            int total = 0;
+            for (int i = 0; i < args.Length; i++) {
+                total += args[i];
+            }
+            return (total * 1.0) / args.Length;
         }
 
         public static int[] ArrayOfMultiples(int num, int length) {
