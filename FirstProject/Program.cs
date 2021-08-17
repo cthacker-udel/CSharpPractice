@@ -299,16 +299,19 @@ namespace FirstProject
 
             Console.WriteLine(displayTime());
 
-            int[] arr = { 124, 12, 5234, 231 };
-            Console.WriteLine("\nBefore sort\n");
-            for (int i = 0; i < arr.Length; i++) {
-                Console.Write(arr[i] + ",");
-            }
-            arr = Sort(arr);
-            Console.WriteLine("\nAfter sort\n");
-            for (int i = 0; i < arr.Length; i++) {
-                Console.Write(arr[i] + ",");
-            }
+            //int[] arr = { 124, 12, 5234, 231 };
+            //Console.WriteLine("\nBefore sort\n");
+            //for (int i = 0; i < arr.Length; i++) {
+            //    Console.Write(arr[i] + ",");
+            //}
+            //arr = Sort(arr);
+            //Console.WriteLine("\nAfter sort\n");
+            //for (int i = 0; i < arr.Length; i++) {
+            //    Console.Write(arr[i] + ",");
+            //}
+
+            int[] arr = { 1, 142, 213, 51, 524, 1524, 141 };
+            descendingOrder(arr);
 
         }
 
@@ -477,6 +480,39 @@ namespace FirstProject
             }
 
 
+        }
+
+        public static long factorial(long num) {
+            if (num == 1)
+            {
+                return 1;
+            }
+            else {
+                return num * factorial(num - 1);
+            }
+        }
+
+        public static void descendingOrder(int[] arr) {
+            int lPivot = 0;
+            int rPivot = arr.Length - 1;
+            int max = 0;
+            int maxI = 0;
+            while (lPivot != arr.Length) {
+                for (int i = rPivot; i >= lPivot; i--) {
+                    // find max
+                    if (arr[i] > max)
+                    {
+                        max = arr[i];
+                        maxI = i;
+                    }
+                }
+                int tmp = arr[lPivot];
+                arr[lPivot] = max;
+                arr[maxI] = tmp;
+                max = 0;
+                maxI = 0;
+                lPivot++;
+            }
         }
 
 
