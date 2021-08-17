@@ -184,6 +184,8 @@ namespace FirstProject
 
             //Console.Write(nFactorialK(5, 7));
 
+            /*
+
             int[] array = new int[6];
 
             int[] initializeArr = { 1, 2, 3, 4, 5 };
@@ -289,6 +291,12 @@ namespace FirstProject
 
             Console.WriteLine(sumArgs(1, 2, 3, 10, 20));
 
+            */
+
+            Console.WriteLine("before printPeriod");
+            Console.WriteLine(printPeriod(0, 4));
+            Console.WriteLine("after printPeriod");
+
         }
 
         public static int sumArgs(params int[] args) {
@@ -324,6 +332,10 @@ namespace FirstProject
             return arr;
         }
 
+        public int addTwoNumbers(int x = 20, int y = 30) {
+            return x + y;
+        }
+
         public static int CounterpartCharCode(char letter) {
             if (Char.ToUpper(letter) == letter)
             {
@@ -335,6 +347,40 @@ namespace FirstProject
                 letter = Char.ToUpper(letter);
                 return ((int)letter);
             }
+        }
+
+        public static double FahrenheitToCelsius(int temp) {
+            return (temp - 32) * (5.0 / 9);
+        }
+
+        public static string warnTemp(int temp) {
+            double degrees = FahrenheitToCelsius(temp);
+            switch (degrees > 37) {
+                case true: {
+                        return "You are ill!";
+                }
+                case false:
+                    return String.Format("You body temperature in Celsius degrees is {0}", temp);
+            }
+        }
+
+        public static string printPeriod(int month1, int month2) {
+
+            int period = Math.Abs(month1 - month2);
+            Dictionary<int, string> dict = new Dictionary<int, string>();
+            dict.Add(0, "January");
+            dict.Add(1, "February");
+            dict.Add(2, "March");
+            dict.Add(3, "April");
+            dict.Add(4, "May");
+            dict.Add(5, "June");
+            dict.Add(6, "July");
+            dict.Add(7, "August");
+            dict.Add(8, "September");
+            dict.Add(9, "Octomber");
+            dict.Add(10, "November");
+            dict.Add(11, "December");
+            return String.Format("The difference in months between {0} and {1} is : {2}", dict[month1], dict[month2], period);
         }
 
         public static double getRectangleArea(double width, double height) {
