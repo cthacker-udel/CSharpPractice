@@ -386,6 +386,26 @@ namespace FirstProject
             }
         }
 
+        public static int countOccurences(int elem, int[] arr) {
+            int count = 0;
+            for (int i = 0; i < arr.Length; i++) {
+                if (arr[i] == elem) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        public static int greaterThanNeighbors(int number, int[] arr) {
+            for (int i = 0; i < arr.Length; i++) {
+                if (checkNeighbors(i, arr)) {
+                    return arr[i];
+                }
+            }
+            return -1;
+        }
+
+
         public static string displayTime()
         {
             int hours = 1;
