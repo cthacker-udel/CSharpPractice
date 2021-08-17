@@ -10,7 +10,7 @@ namespace FirstProject
         public static string MonthName(int num) {
 
             return new DateTimeFormatInfo().GetMonthName(num);
-        
+
         }
 
         static void Main(string[] args)
@@ -299,6 +299,91 @@ namespace FirstProject
 
             Console.WriteLine(displayTime());
 
+            int[] arr = { 124, 12, 5234, 231 };
+            Console.WriteLine("\nBefore sort\n");
+            for (int i = 0; i < arr.Length; i++) {
+                Console.Write(arr[i] + ",");
+            }
+            arr = Sort(arr);
+            Console.WriteLine("\nAfter sort\n");
+            for (int i = 0; i < arr.Length; i++) {
+                Console.Write(arr[i] + ",");
+            }
+
+        }
+
+        public static int[] Sort(int[] numbers) {
+            bool loopExit = false;
+            while (true) {
+                for (int i = 0; i < numbers.Length - 1; i++) {
+                    int i1 = numbers[i];
+                    int i2 = numbers[i + 1];
+                    if (i1 > i2)
+                    {
+                        int temp = i1;
+                        numbers[i] = i2;
+                        numbers[i + 1] = i1;
+                        loopExit = false;
+                        break;
+                    }
+                    else {
+                        loopExit = true;
+                    }
+                }
+                if (loopExit) {
+                    break;
+                }
+            }
+            return numbers;
+        }
+
+        public static string printName(string name) {
+            return String.Format("Hello, {0}!", name);
+        }
+
+        public static int getMax(params int[] vals)
+        {
+            int max = 0;
+            for (int i = 0; i < vals.Length; i++) {
+                max = Math.Max(max, vals[i]);
+            }
+            return max;
+        }
+
+        public static string lastDigit(int number) {
+            int lastdigit = number % 10;
+            switch (lastdigit) {
+                case 1:
+                    return "One";
+                case 2:
+                    return "Two";
+                case 3:
+                    return "Three";
+                case 4:
+                    return "Four";
+                case 5:
+                    return "Five";
+                case 6:
+                    return "Six";
+                case 7:
+                    return "Seven";
+                case 8:
+                    return "Eight";
+                case 9:
+                    return "Nine";
+                default:
+                    return "default";
+            }
+        }
+
+        public static bool checkNeighbors(int ind, int[] arr) {
+            if (ind <= arr.Length - 3 && ind >= 0)
+            {
+                return arr[ind] > arr[ind + 1] && arr[ind] > arr[ind + 2];
+            }
+            else {
+                return false;
+            }
         }
 
         public static string displayTime()
@@ -387,11 +472,12 @@ namespace FirstProject
         public static string warnTemp(int temp) {
             double degrees = FahrenheitToCelsius(temp);
             switch (degrees > 37) {
-                case true: {
+                case true:
                         return "You are ill!";
-                }
                 case false:
                     return String.Format("You body temperature in Celsius degrees is {0}", temp);
+                default:
+                    return "default";
             }
         }
 
