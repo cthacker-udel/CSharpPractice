@@ -293,9 +293,40 @@ namespace FirstProject
 
             */
 
-            Console.WriteLine("before printPeriod");
-            Console.WriteLine(printPeriod(0, 4));
-            Console.WriteLine("after printPeriod");
+            //Console.WriteLine("before printPeriod");
+            //Console.WriteLine(printPeriod(0, 4));
+            //Console.WriteLine("after printPeriod");
+
+            Console.WriteLine(displayTime());
+
+        }
+
+        public static string displayTime()
+        {
+            int hours = 1;
+            int minutes = 0;
+            int seconds = 0;
+
+            do
+            {
+                Console.WriteLine("\nEnter the hour\n");
+                hours = int.Parse(Console.ReadLine());
+            } while (hours == 0 || hours > 23 || hours < 1);
+
+            do
+            {
+                Console.WriteLine("\nEnter the minutes\n");
+                minutes = int.Parse(Console.ReadLine());
+            } while (minutes == 0 || minutes > 59 || minutes < 0);
+
+            do
+            {
+                Console.WriteLine("\nEnter the seconds\n");
+                seconds = int.Parse(Console.ReadLine());
+
+            } while (seconds == 0 || seconds > 59 || seconds < 0);
+
+            return String.Format("\nThe time is : {0}:{1}:{2}\n", hours, minutes, seconds);
 
         }
 
@@ -388,6 +419,7 @@ namespace FirstProject
             Console.WriteLine("The area is : {0}",area);
             return area;
         }
+
 
         public static bool isArrSymmetric(int[] arr, int len) {
             int middle = len / 2;
