@@ -285,13 +285,25 @@ namespace FirstProject
                 Console.WriteLine("{0}", "");
             }
 
-            // remember to do exercises chapter 7
+            // remember to do exercises chapter 
 
 
+        }
 
-     
+        public static int sumArgs(params int[] args) {
+            int total = 0;
+            for (int i = 0; i < args.Length; i++) {
+                total += args[i];
+            }
+            return total;
+        }
 
-
+        public static string concatStrings(params string[] strings) {
+            string concattedString = "";
+            for (int i = 0; i < strings.Length; i++) {
+                concattedString += strings[i];
+            }
+            return concattedString;
         }
 
         public static int[] ArrayOfMultiples(int num, int length) {
