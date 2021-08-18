@@ -297,7 +297,7 @@ namespace FirstProject
             //Console.WriteLine(printPeriod(0, 4));
             //Console.WriteLine("after printPeriod");
 
-            Console.WriteLine(displayTime());
+            //Console.WriteLine(displayTime());
 
             //int[] arr = { 124, 12, 5234, 231 };
             //Console.WriteLine("\nBefore sort\n");
@@ -310,9 +310,77 @@ namespace FirstProject
             //    Console.Write(arr[i] + ",");
             //}
 
-            int[] arr = { 1, 142, 213, 51, 524, 1524, 141 };
-            descendingOrder(arr);
+            //int[] arr = { 1, 142, 213, 51, 524, 1524, 141 };
+            //descendingOrder(arr);
 
+            nLoopsK(1, 4,4);
+
+            // page 347
+
+        }
+
+        public static void solveEquatiuon(int number) {
+            string numStr = number.ToString();
+            string newStr = "";
+            for (int i = numStr.Length - 1; i >= 0; i--) {
+                newStr += numStr[i];
+            }
+            int avg = 0;
+            for (int i = 0; i < newStr.Length; i++) {
+                avg += Int32.Parse(newStr[i] + "");
+            }
+            avg = avg / newStr.Length;
+            Console.WriteLine(String.Format("The avg of the reversed number {0} is : {1}", newStr, avg));
+
+            Console.WriteLine("\nPlease enter a to solve the linear equation a*x+b=0");
+            int a = int.Parse(Console.ReadLine());
+            Console.WriteLine("\nPlease enter b to solve the linear equation a*x+b=0");
+            int b = int.Parse(Console.ReadLine());
+            int x = (-1 * b) / a;
+            Console.WriteLine(String.Format("\nx = {0}", x));
+        }
+
+        public static bool polynomial1(int x) {
+            return (3 * Math.Pow(x, 2) + x - 3) + (x - 1) == (3 * Math.Pow(x, 2) + 2 * x - 4);
+        }
+
+        public static bool polynomial2(int x) {
+            return (3 * Math.Pow(x, 2) + x - 3) * (x - 1) == (3 * Math.Pow(x, 3) - 2 * Math.Pow(x, 2) - 4 * x + 3);
+        }
+
+        public static long Fib(int n) {
+            if (n <= 2)
+            {
+                return 1;
+            }
+            else {
+                return Fib(n - 1) + Fib(n - 2);
+            }
+        }
+
+        public static long factorial2(int n) {
+            if (n <= 1)
+            {
+                return 1;
+            }
+            else {
+                return factorial2(n - 1) * n;
+            }
+        }
+
+        public static void nLoopsK(int n, int k, int tmpAmt) {
+
+            if (k == 0)
+            {
+                return;
+            }
+            else {
+                for (int i = 1; i <= tmpAmt; i++) {
+                    Console.WriteLine(String.Format("{0} {1}", n, i));
+                }
+                nLoopsK(n + 1, k - 1, tmpAmt);
+            }
+        
         }
 
         public static int[] Sort(int[] numbers) {
