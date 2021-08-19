@@ -313,9 +313,13 @@ namespace FirstProject
             //int[] arr = { 1, 142, 213, 51, 524, 1524, 141 };
             //descendingOrder(arr);
 
-            nLoopsK(1, 4,4);
+            //nLoopsK(1, 4,4);
 
-            // page 347
+            // page 392
+
+            Dog newDog = new Dog("sparky", "red", "husky");
+            Cat newCat = new Cat("meow", "tasmanian", "black", 3, 8, 37);
+            newDog.Bark();
 
         }
 
