@@ -20,11 +20,11 @@ namespace FirstProject
 
         }
 
-        public void bark() {
+        public void Bark() {
             Console.WriteLine("WOOF");
         }
 
-        public void sit() {
+        public void Sit() {
             if (this.isSitting)
             {
                 Console.WriteLine(String.Format("{0} is already sitting",this.name));
