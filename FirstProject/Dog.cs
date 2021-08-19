@@ -24,6 +24,16 @@ namespace FirstProject
             Console.WriteLine("WOOF");
         }
 
+        public void sit() {
+            if (this.isSitting)
+            {
+                Console.WriteLine(String.Format("{0} is already sitting",this.name));
+            }
+            else {
+                Console.WriteLine(String.Format("{0} is now sitting", this.name));
+            }
+        }
+
 
 
     }
