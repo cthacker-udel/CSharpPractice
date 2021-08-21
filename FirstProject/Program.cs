@@ -416,9 +416,42 @@ namespace FirstProject
 
             Console.WriteLine("The password is : {0}", newpass);
 
+            // page 402
+
             
 
 
+        }
+
+        public static bool CheckEquality(Object obj1, Object obj2) {
+            return obj1.Equals(obj2);
+        }
+
+        public static string ReverseCase(string aStr) {
+
+            string tmpStr = "";
+            for (int i = 0; i < aStr.Length; i++) {
+                char iChar = aStr[i];
+                if (Char.IsUpper(iChar))
+                {
+                    tmpStr += Char.ToLower(iChar);
+                }
+                else {
+                    tmpStr += Char.ToUpper(iChar);
+                }
+            }
+            return tmpStr;
+        
+        }
+
+        public static string Reverse(string aStr) {
+
+            string tmpStr = "";
+            for (int i = aStr.Length - 1; i >= 0; i--) {
+                tmpStr += aStr[i];
+            }
+            return tmpStr;
+        
         }
 
         public static void solveEquatiuon(int number) {
