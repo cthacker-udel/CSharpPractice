@@ -291,7 +291,7 @@ namespace FirstProject
 
             Console.WriteLine(sumArgs(1, 2, 3, 10, 20));
 
-            */
+            
 
             //Console.WriteLine("before printPeriod");
             //Console.WriteLine(printPeriod(0, 4));
@@ -317,9 +317,107 @@ namespace FirstProject
 
             // page 392
 
-            Dog newDog = new Dog("sparky", "red", "husky");
-            Cat newCat = new Cat("meow", "tasmanian", "black", 3, 8, 37);
-            newDog.Bark();
+            //Dog newDog = new Dog("sparky", "red", "husky");
+            //Cat newCat = new Cat("meow", "tasmanian", "black", 3, 8, 37);
+            //newDog.Bark();
+
+            /Console.WriteLine(String.Format("Counter's current value is : {0}", Counter.counter));
+            //Counter.increment();
+            Counter.increment();
+            Console.WriteLine(String.Format("Counter's current value is : {0}", Counter.counter));
+
+            // test run
+
+
+            int start = Environment.TickCount;
+
+            for (long i = 0; i < 1000000000; i++) {
+            }
+
+            int end = Environment.TickCount;
+
+            Console.WriteLine("The amount of time elapsed is : {0}", (end - start) / 1000);
+
+            Random random = new Random();
+
+            for (int i = 0; i < 6; i++) {
+
+                Console.WriteLine("random value : {0}", random.Next(49) + 1);
+
+            }
+
+            */
+
+            Random random = new Random();
+
+            int randomLen = random.Next(15) + 8;
+            string pass = " ".PadRight(randomLen);
+
+            string upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            string lower = "abcdefghijklmnopqrstuvwxyz";
+
+            int third = (int)Math.Floor((double)pass.Length / 3);
+
+            int total = 0;
+
+            do
+            {
+
+                int index = random.Next(pass.Length-1);
+                if (pass[index] != ' ') {
+                    // index occupied
+                    continue;
+                }
+                pass = pass.Insert(index, random.Next(9).ToString());// = random.Next(9);
+                total++;
+
+            } while (total != 3);
+
+            total = 0;
+
+            do
+            {
+
+                int index = random.Next(pass.Length-1);
+                if (pass[index] != ' ')
+                {
+                    // occupied
+                    continue;
+                }
+                pass = pass.Insert(index, upper[random.Next(upper.Length - 1)].ToString());
+                total++;
+            } while (total != 3);
+
+            total = 0;
+
+            do
+            {
+
+                int index = random.Next(pass.Length - 1);
+                if (pass[index] != ' ') {
+                    continue;
+                }
+                pass = pass.Insert(index, lower[random.Next(lower.Length - 1)].ToString());
+                total++;
+
+            } while (total != 3);
+
+            string newpass = "";
+            for (int i = 0; i < pass.Length; i++) {
+                char theChar = pass[i];
+                if (theChar == ' ')
+                {
+                    continue;
+                }
+                else {
+                    newpass += theChar;
+                }
+            }
+
+            Console.WriteLine("The password is : {0}", newpass);
+
+            
+
 
         }
 
