@@ -10,9 +10,9 @@ namespace FirstProject
         private string name;
         private string breed;
         private string color;
-        int age;
-        int weight;
-        int height;
+        private int age;
+        private int weight;
+        private int height;
 
         public Cat(string theName, string theBreed, string theColor, int theAge, int theWeight, int theHeight) {
             this.name = theName;
@@ -45,6 +45,10 @@ namespace FirstProject
 
         public int GetHeight() {
             return this.height;
+        }
+
+        public void sayMiau() {
+            Console.WriteLine(String.Format("Meow, My name is : {0} and I weigh {1} pounds", this.name, this.weight));
         }
 
     }

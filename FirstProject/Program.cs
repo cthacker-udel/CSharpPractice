@@ -346,7 +346,7 @@ namespace FirstProject
 
             }
 
-            */
+            
 
             Random random = new Random();
 
@@ -417,10 +417,130 @@ namespace FirstProject
             Console.WriteLine("The password is : {0}", newpass);
 
             // page 402
+            */
 
-            
+            Cat cat1 = new Cat("jeff", "maine coon", "white", 5, 10, 15);
+            Cat cat2 = new Cat("carl", "puff", "black", 2, 10, 11);
+            Cat cat3 = new Cat("rob", "persian", "gray", 3, 5, 11);
+
+            cat1.sayMiau();
+            cat2.sayMiau();
+            cat3.sayMiau();
+
+        }
+
+        public static int getSum(string nums) {
+            int total = 0;
+            string[] splitNums = nums.Split(' ');
+            for (int i = 0; i < splitNums.Length; i++) {
+                total += int.Parse(splitNums[i]);
+            }
+            return total;
+        }
+
+        public static bool GreaterThanOne(string fraction) {
+
+            string[] splitFrac = fraction.Split('/');
+            int numerator = int.Parse(splitFrac[0]);
+            int denominator = int.Parse(splitFrac[1]);
+            return numerator > denominator;
+
+        }
+
+        public static bool IsIsogram(string aStr) {
+
+            aStr = aStr.ToLower();
+            for (int i = 0; i < aStr.Length; i++) {
+                char theChar = aStr[i];
+                if (aStr.IndexOf(theChar, i + 1) != -1)
+                {
+                    // second occurence found
+                    return false;
+                }
+            }
+            return true;
+
+        }
+
+        public static int SumSmallest(int[] nums) {
+
+            List<int> intList = new List<int>();
+            for (int i = 0; i < nums.Length; i++) {
+                if (nums[i] > 0)
+                {
+                    intList.Add(nums[i]);
+                }
+            }
+            intList.Sort();
+            return intList[0] + intList[1];
+
+        }
+
+        public static string HighLow(string numbers) {
+            string[] nums = numbers.Split(" ");
+            int max = int.Parse(nums[0]);
+            int min = int.Parse(nums[0]);
+            for (int i = 0; i < nums.Length; i++) {
+                max = Math.Max(int.Parse(nums[i]), max);
+                min = Math.Min(int.Parse(nums[i]), min);
+            }
+            return String.Format("{0} {1}", max, min);
+        }
+
+        public static int collatz(int number) {
+
+            int steps = 0;
+            while (number != 1) {
+                if (number % 2 == 0)
+                {
+                    number = number / 2;
+                }
+                else {
+                    number = (number * 3) + 1;
+                }
+                steps++;
+            }
+            return steps;
+        
+        }
+
+        public static string GetMiddle(string aStr) {
+
+            if (aStr.Length % 2 == 0)
+            {
+                // even length
+                int middle = aStr.Length / 2;
+                int lmiddle = middle - 1;
+                return aStr[lmiddle].ToString() + aStr[middle].ToString();
+            }
+            else {
+                return aStr[aStr.Length / 2].ToString();
+            }
+
+        }
+
+        public static int CountOnes(int number) {
+
+            int count = 0;
+            string binString = Convert.ToString(number, 2);
+            for (int i = 0; i < binString.Length; i++) {
+                char theChar = binString[i];
+                if (theChar == '1') {
+                    count++;
+                }
+            }
+            return count;
+        
+        }
 
 
+        public static string Bomb(string aStr) {
+
+            aStr = aStr.ToLower();
+
+            return aStr.Contains("bomb") ? "Duck!!!" : "There is no bomb, relax.";
+
+        
         }
 
         public static bool CheckEquality(Object obj1, Object obj2) {
