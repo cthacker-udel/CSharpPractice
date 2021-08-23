@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Collections.Generic;
+using System.IO;
 
 namespace FirstProject
 {
@@ -419,15 +420,53 @@ namespace FirstProject
             // page 402
             */
 
-            Cat cat1 = new Cat("jeff", "maine coon", "white", 5, 10, 15);
-            Cat cat2 = new Cat("carl", "puff", "black", 2, 10, 11);
-            Cat cat3 = new Cat("rob", "persian", "gray", 3, 5, 11);
+            //Cat cat1 = new Cat("jeff", "maine coon", "white", 5, 10, 15);
+            //Cat cat2 = new Cat("carl", "puff", "black", 2, 10, 11);
+            //Cat cat3 = new Cat("rob", "persian", "gray", 3, 5, 11);
 
-            cat1.sayMiau();
-            cat2.sayMiau();
-            cat3.sayMiau();
+            //cat1.sayMiau();
+            //cat2.sayMiau();
+            //cat3.sayMiau();
+
+            // example throwing an exception
+
+            //Exception e = new Exception("This is an exception");
+            //throw e;
+
+            TextReader reader = new StreamReader("txtfile.txt");
+            try
+            {
+
+                TextReader reader = new StreamReader("txtfile.txt");
+                string line = reader.ReadLine();
+                Console.WriteLine(line);
+                reader.Close();
+            }
+            catch (FileNotFoundException exception)
+            {
+                Console.WriteLine("Exception : file " + exception.FileName + " was unable to be found. [FNF EXCEPTION]");
+            }
+            catch (IOException exception)
+            {
+                Console.WriteLine("IOException reached");
+            }
+            finally {
+                if (reader != null)
+                {
+                    reader.Dispose();
+                }
+            }
+
+            using (TextReader reader2 = new StreamReader("txtfile2.txt")) {
+                Console.WriteLine(reader2.ReadLine());
+            }
+
+
+            // page 444
 
         }
+
+
 
         public static int getSum(string nums) {
             int total = 0;
