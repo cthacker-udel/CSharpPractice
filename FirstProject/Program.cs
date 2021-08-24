@@ -433,6 +433,7 @@ namespace FirstProject
             //Exception e = new Exception("This is an exception");
             //throw e;
 
+            /*
             TextReader reader = new StreamReader("txtfile.txt");
             try
             {
@@ -460,9 +461,89 @@ namespace FirstProject
             using (TextReader reader2 = new StreamReader("txtfile2.txt")) {
                 Console.WriteLine(reader2.ReadLine());
             }
+            */
+
+            object[] objs = { 1, 2, 3, "a", "b" };
+
+            ParseArray(objs);
 
 
             // page 444
+
+        }
+
+        public static double[] FindLargest(double[][] matrix) {
+
+            List<double> intList = new List<double>();
+            for (int i = 0; i < matrix.Length; i++) {
+                double[] arr = matrix[i];
+                double max = matrix[i][0];
+                for (int j = 0; j < arr.Length; j++) {
+                    max = Math.Max(max, arr[j]);
+                }
+                intList.Add(max);
+            }
+
+            double[] returnArr = new double[intList.Count];
+            for (int i = 0; i < intList.Count; i++) {
+                returnArr[i] = intList[i];
+            }
+            return returnArr;
+
+        }
+
+        public static bool IsStrangePair(string str1, string str2) {
+            if (str1 == "" && str2 == "")
+            {
+                return true;
+            }
+            else if (str1 == "" && str2 != "")
+            {
+                return false;
+            }
+            else if (str1 != "" && str2 == "") {
+                return false;
+            }
+            return str1[0] == str2[str2.Length - 1] && str1[str1.Length - 1] == str2[0];
+        }
+
+        public static string[] ParseArray(object[] arr) {
+            string[] res = new string[arr.Length];
+            for (int i = 0; i < arr.Length; i++) {
+                res[i] = arr[i].ToString();
+            }
+            return res;
+        }
+
+        public static double square_areas_difference(int radius) {
+            return Math.Pow(radius, 2) * 2;
+        }
+
+        public static bool IsPalindrome(int num) {
+
+            string strNum = num.ToString();
+            string newStr = "";
+            for (int i = strNum.Length-1; i >= 0; i--) {
+                newStr += strNum[i];
+            }
+            return int.Parse(newStr) == num;
+
+        }
+
+        public static bool ValidatePIN(string aStr) {
+
+            if (aStr.Length == 4 || aStr.Length == 6)
+            {
+                for (int i = 0; i < aStr.Length; i++) {
+                    if (!char.IsDigit(aStr[i])) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            else {
+                return false;
+            }
 
         }
 
