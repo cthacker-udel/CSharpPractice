@@ -463,12 +463,25 @@ namespace FirstProject
             }
             */
 
-            object[] objs = { 1, 2, 3, "a", "b" };
+            //object[] objs = { 1, 2, 3, "a", "b" };
 
-            ParseArray(objs);
+            //ParseArray(objs);
+
+            Console.WriteLine(Maskify("4556364607935616"));
 
 
             // page 444
+
+        }
+
+        public static bool IsSymmetrical(int num) {
+
+            string strNum = num.ToString();
+            string revNum = "";
+            for (int i = strNum.Length - 1; i >= 0; i--) {
+                revNum += strNum[i];
+            }
+            return int.Parse(revNum) == num;
 
         }
 
@@ -489,6 +502,64 @@ namespace FirstProject
                 returnArr[i] = intList[i];
             }
             return returnArr;
+
+        }
+
+        public static string Maskify(string aStr) {
+            if (aStr.Length < 4)
+            {
+                return aStr;
+            }
+            else {
+                if (aStr.Length == 4)
+                {
+                    return "####";
+                }
+                else {
+                    return "#".PadRight(aStr.Length - 4,'#') + aStr.Substring(aStr.Length - 4, 4);
+                }
+            }
+        }
+
+        public static int[] FilterArray(object[] objs) {
+
+            List<int> filterList = new List<int>();
+            for (int i = 0; i < objs.Length; i++) {
+                if (objs[i].GetType() != 3.GetType())
+                {
+                    // type is not int
+                }
+                else {
+                    filterList.Add((int)objs[i]);
+                }
+            }
+
+            int[] res = new int[filterList.Count];
+            for (int i = 0; i < filterList.Count; i++) {
+                res[i] = filterList[i];
+            }
+            return res;
+        
+        }
+
+        public static int[] CountPosSumNeg(double[] arr) {
+
+            int[] res = new int[2];
+            double posCount = 0;
+            double negSum = 0;
+
+            for (int i = 0; i < arr.Length; i++) {
+                if (arr[i] >= 0)
+                {
+                    posCount++;
+                }
+                else {
+                    negSum += arr[i];
+                }
+            }
+            res[0] = (int)posCount;
+            res[1] = (int)negSum;
+            return res;
 
         }
 
