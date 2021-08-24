@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace FirstProject
 {
@@ -472,6 +473,72 @@ namespace FirstProject
 
             // page 444
 
+
+            string aStr = "hello there";
+            StringBuilder builder = new StringBuilder();
+            builder.Append("Numbers : ");
+
+            Console.WriteLine(DateTime.Now);
+            for (int i = 0; i < 200; i++) {
+                builder.Append(String.Format("{0},",i));
+            }
+            Console.WriteLine(builder.ToString());
+            Console.WriteLine(DateTime.Now);
+            string sbStr = builder.ToString();
+            StringBuilder sb = new StringBuilder();
+            for (int i = sbStr.Length - 1; i >= 0; i--) {
+                sb.Append(sbStr[i]);
+            }
+            Console.Write(sb.ToString());
+
+            for (int i = builder.Length - 1; i >= 0; i--) {
+                Console.Write(builder[i]);
+            }
+
+            // page 491
+
+        }
+
+        public static string getAllCapitals(string aStr) {
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < aStr.Length; i++) {
+                if (Char.IsLetter(aStr[i]) && Char.ToUpper(aStr[i]) == aStr[i]) {
+                    // is uppercase letter
+                    sb.Append(aStr[i]);
+                }
+            }
+            return sb.ToString();
+        
+        }
+
+        public static string theTrimEnd(string aStr) {
+            return aStr.TrimEnd();
+        }
+
+        public static string theTrimStart(string aStr) {
+            return aStr.TrimStart();
+        }
+
+        public static string specialTrim(string aStr) {
+
+            char[] trimChars = { ' ', 'b', 'c', ',', '.' };
+            return aStr.Trim(trimChars);
+
+        }
+
+        public static string[] specialSplitWithoutEmpty(string split) {
+
+            return split.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+
+        }
+
+        public static string[] specialSplit(string split) {
+            return split.Split(" ", StringSplitOptions.None);
+        }
+
+        public static string[] multipleSplit(string split) {
+            return split.Split(new char[]{' ', ',', '.'});
         }
 
         public static bool IsSymmetrical(int num) {
