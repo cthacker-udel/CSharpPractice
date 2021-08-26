@@ -507,6 +507,28 @@ namespace FirstProject
 
         }
 
+        public static string RemoveSpecialCharacters(string aStr) {
+
+            string specialCharacters = "!@#$%^&*()+=[]{};:\"\'<>,./?\\~`|";
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < aStr.Length; i++) {
+
+                if (specialCharacters.IndexOf(aStr[i]) != -1)
+                {
+                    continue;
+                }
+                else { 
+                    sb.Append(aStr[i]);
+                }
+            
+            }
+            return sb.ToString();
+
+        
+        }
+
         public static int SortDescending(int number) {
 
             string theStrNum = number.ToString();
