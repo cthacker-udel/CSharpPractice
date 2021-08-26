@@ -632,7 +632,7 @@ namespace FirstProject
 
             if (aStr.Length != 14) {
                 return false;
-            }
+        }
 
             string exp = "\\(\\d{3}\\) \\d{3}-\\d{4}";
 
