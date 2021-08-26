@@ -3,6 +3,9 @@ using System.Globalization;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Numerics;
+using System.Text.RegularExpressions;
+using System.Linq;
 
 namespace FirstProject
 {
@@ -473,7 +476,7 @@ namespace FirstProject
 
             // page 444
 
-
+            /*
             string aStr = "hello there";
             StringBuilder builder = new StringBuilder();
             builder.Append("Numbers : ");
@@ -494,8 +497,219 @@ namespace FirstProject
             for (int i = builder.Length - 1; i >= 0; i--) {
                 Console.Write(builder[i]);
             }
+            */
+
+            //Console.WriteLine(Encrypt("banana"));
+
+            Console.WriteLine(SortDescending(123));
 
             // page 491
+
+        }
+
+        public static int SortDescending(int number) {
+
+            string theStrNum = number.ToString();
+            string[] strNum = new string[theStrNum.Length];
+            for (int i = 0; i < theStrNum.Length; i++) {
+                strNum[i] = theStrNum[i].ToString();
+            }
+
+            int[] arr = new int[strNum.Length];
+            for (int i = 0; i < strNum.Length; i++) {
+                arr[i] = int.Parse(strNum[i]);
+            }
+            Array.Sort(arr);
+            Array.Reverse(arr);
+
+            string result = "";
+            for (int i = 0; i < arr.Length; i++) {
+                result += arr[i].ToString();
+            }
+            return int.Parse(result);
+
+
+        }
+
+        public static int Potatoes(string aStr) {
+
+            string exp = "(potato)";
+
+            Regex regex = new Regex(exp);
+
+            MatchCollection collection = regex.Matches(aStr);
+
+            return collection.Count;
+        
+        }
+
+        public static string Encrypt(string aStr) {
+
+            StringBuilder builder = new StringBuilder();
+
+            for (int i = aStr.Length - 1; i >= 0; i--) {
+
+                builder.Append(aStr[i]);
+            
+            }
+
+            string revString = builder.ToString();
+
+            StringBuilder newBuilder = new StringBuilder();
+
+            string vowels = "aeiouAEIOU";
+
+            for (int i = 0; i < revString.Length; i++)
+            {
+
+                char iChar = char.ToLower(revString[i]);
+                
+
+                switch (iChar) {
+
+                    case 'a':
+                        {
+                            newBuilder.Append('0');
+                            break;
+                        }
+                    case 'e':
+                        {
+                            newBuilder.Append('1');
+                            break;
+                        }
+                    case 'i':
+                        {
+                            newBuilder.Append('2');
+                            break;
+                        }
+                    case 'o':
+                        {
+                            newBuilder.Append('2');
+                            break;
+                        }
+                    case 'u':
+                        {
+                            newBuilder.Append('3');
+                            break;
+                        }
+                    default:
+                        {
+                            newBuilder.Append(iChar);
+                            break;
+                        }
+                }
+            
+            }
+            newBuilder.Append("aca");
+            return newBuilder.ToString();
+        }
+
+        public static string FormatNum(int num) {
+
+            return String.Format("{0:n0}", num);
+
+        }
+
+        public static int[,] squarePatch(int num) {
+
+            int[,] matrix = new int[num,num];
+
+            for (int i = 0; i < num; i++) {
+
+                for (int j = 0; j < num; j++) {
+
+                    matrix[i,j] = num;
+
+                }
+
+            }
+            return matrix;
+
+        
+        }
+
+        public static bool IsValidPhoneNumber(string aStr) {
+
+            if (aStr.Length != 14) {
+                return false;
+            }
+
+            string exp = "\\(\\d{3}\\) \\d{3}-\\d{4}";
+
+            return Regex.IsMatch(aStr, exp);
+
+        }
+
+        public static bool isPrime(int num) {
+
+            if (num < 2)
+            {
+                return false;
+            }
+            else if (num == 2 || num == 3 || num == 5)
+            {
+                return true;
+            }
+            else if (num % 2 == 0 || num % 3 == 0 || num % 5 == 0)
+            {
+                return false;
+            }
+            else {
+                int sqrt = ((int)Math.Sqrt(num))+1;
+                for (int i = 2; i < sqrt; i++) {
+                    if (num % i == 0) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+        
+        }
+
+        public static bool KToK(string n, int k) {
+
+            BigInteger bigIntK = new BigInteger(k);
+            for (int i = 0; i < k-1; i++) {
+                bigIntK *= k;
+            }
+            return n.Equals(bigIntK.ToString());
+
+        }
+
+        public static string ToScottishScreaming(string aStr) {
+
+            string vowels = "AEIOUaeiou";
+
+            StringBuilder builder = new StringBuilder();
+
+            for (int i = 0; i < aStr.Length; i++) {
+
+                if (vowels.IndexOf(aStr[i]) != -1)
+                {
+                    builder.Append('E');
+                }
+                else {
+                    builder.Append(aStr[i].ToString().ToUpper());
+                }
+            
+            }
+            return builder.ToString();
+
+
+        
+        }
+
+        public static string FindNemo(string aStr) {
+
+            string[] splitStr = aStr.Split(' ');
+            for (int i = 0; i < splitStr.Length; i++) {
+
+                if (splitStr[i].Equals("Nemo")) {
+                    return String.Format("I found Nemo at {0}!", i+1);
+                }
+            
+            }
+            return "I can't find Nemo :(";
 
         }
 
@@ -1345,6 +1559,7 @@ namespace FirstProject
 
 
 
+        /*
         public static bool isPrime(int number) {
 
             if (number <= 2)
@@ -1366,6 +1581,7 @@ namespace FirstProject
 
 
         }
+        */
 
         public static bool isEven(int number) {
             return number % 2 == 0;
