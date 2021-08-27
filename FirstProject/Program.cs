@@ -6,6 +6,7 @@ using System.Text;
 using System.Numerics;
 using System.Text.RegularExpressions;
 using System.Linq;
+using System.Data;
 
 namespace FirstProject
 {
@@ -501,10 +502,184 @@ namespace FirstProject
 
             //Console.WriteLine(Encrypt("banana"));
 
-            Console.WriteLine(SortDescending(123));
+            //Console.WriteLine(SortDescending(123));
+
+            //CheckPerfect(28);
+
+            FairDie(new int[] { 44,52,33,40,41,30 });
 
             // page 491
 
+        }
+
+
+        public static bool HasFriday13th(int month, int year) {
+
+            DateTime date = new DateTime(year, month, 13);
+
+            return date.DayOfWeek == DayOfWeek.Friday;
+
+        
+        }
+
+        public static string Century(int year)
+        {
+
+            double result = (year * 1.0) / 100;
+
+            if (Math.Floor(result) == result)
+            {
+                // is an integer
+                return String.Format("{0}th century", result);
+            }
+            else
+            {
+                int res = (int)Math.Floor(result);
+                if (res >= 20) {
+                    return String.Format("{0}st century", res+1);
+                }
+                return String.Format("{0}th century", res + 1);
+            }
+
+
+        }
+
+        public static int gcd(int num1, int num2) {
+
+            int min = Math.Min(num1, num2);
+            int maxFactor = 0;
+
+            for (int i = 1; i <= min; i++) {
+                if (num1 % i == 0 && num2 % i == 0) {
+                    maxFactor = Math.Max(maxFactor, i);
+                }
+            }
+            return maxFactor;
+
+
+        }
+
+        public static int Equation(string expression) {
+
+            DataTable table = new DataTable();
+            table.Columns.Add("expression", string.Empty.GetType(), expression);
+            DataRow row = table.NewRow();
+            table.Rows.Add(row);
+            return (int)double.Parse((string)row["expression"]);
+
+        }
+
+        public static bool isFactorial(int number) {
+
+            int total = 1;
+            for (int i = 1; ; i++) {
+                if (total > number)
+                {
+                    return false;
+                }
+                else if (total == number) {
+                    return true;
+                }
+                else
+                {
+                    total *= i;
+                }
+            }
+
+        }
+
+        public static string repeat(char theChar, int times) {
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < times; i++) {
+                if (times > 1)
+                {
+                    if (i == 0)
+                    {
+                        sb.Append(theChar.ToString().ToUpper());
+                    }
+                    else
+                    {
+                        sb.Append(theChar.ToString().ToLower()); ;
+                    }
+                }
+                else
+                {
+                    sb.Append(theChar.ToString().ToUpper());
+                }
+            }
+            return sb.ToString();
+        
+        }
+
+        public static string Accum(string aStr) {
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < aStr.Length; i++)
+            {
+                if (i == aStr.Length - 1)
+                {
+                    sb.Append(repeat(aStr[i], i + 1));
+                }
+                else {
+                    sb.Append(repeat(aStr[i], i + 1));
+                    sb.Append('-');
+                }
+            
+            }
+            return sb.ToString();
+        
+        }
+
+
+        public static bool FairDie(int[] arr)
+        {
+
+            int total = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                total += arr[i];
+            }
+            double avgFrequency = (total * 1.0) / 6;
+
+            double xSquared = 0;
+            for (int i = 0; i < arr.Length; i++)
+            {
+                xSquared += Math.Pow(arr[i] - avgFrequency, 2);
+            }
+            xSquared /= avgFrequency;
+            Console.WriteLine(String.Format("The result is : {0}", xSquared));
+            return xSquared < 11.0705;
+
+        }
+
+        public static int Tetra(int number) {
+
+            return (number * (number + 1) * (number + 2)) / 6;
+        
+        }
+
+        public static string MakeTitle(string aStr) {
+
+            string[] splitStr = aStr.Split(' ');
+            for (int i = 0; i < splitStr.Length; i++) {
+                string theStr = splitStr[i];
+                splitStr[i] = theStr[0].ToString().ToUpper() + theStr.Substring(1);
+            }
+            return String.Join(" ", splitStr);
+        
+        }
+
+        public static bool CheckPerfect(int number) {
+
+            int total = 0;
+            for (int i = 1; i < number; i++) {
+                if (number % i == 0) {
+                    total += i;
+                }
+            }
+            return total == number;
+        
         }
 
         public static string RemoveSpecialCharacters(string aStr) {
