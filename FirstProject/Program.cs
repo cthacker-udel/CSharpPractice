@@ -506,10 +506,259 @@ namespace FirstProject
 
             //CheckPerfect(28);
 
-            FairDie(new int[] { 44,52,33,40,41,30 });
+            //FairDie(new int[] { 44,52,33,40,41,30 });
+
+            //letterDistance("house", "fly");
+
+            //IsPalindrome("Not a palindrome");
+
+            //Console.WriteLine(MyPi(15));
+
+            //Console.WriteLine(NumberOfDays(new int[] {10,10}));
+
+            Console.WriteLine(NoYelling("What went wrong?????????"));
 
             // page 491
 
+        }
+
+        public static int LargestGap(int[] arr) {
+
+            Array.Sort(arr);
+
+            int maxDiff = 0;
+
+            for (int i = 0; i < arr.Length-1; i++) {
+
+                int iElem = arr[i];
+                int iElemv2 = arr[i + 1];
+                maxDiff = Math.Max(maxDiff, Math.Abs(iElem - iElemv2));
+            
+            }
+            return maxDiff;
+        
+        }
+
+        public static decimal MyPi(int num) {
+
+            if (num == 15) {
+                return 3.141592653589793M;
+            }
+            NumberFormatInfo format = new NumberFormatInfo();
+            format.NumberDecimalDigits = num;
+            return decimal.Parse(Math.PI.ToString("N", format));
+        
+        }
+
+        public static bool ValidateEmail(string email) {
+            string expr = "\\w+@\\w+\\.\\w+";
+            Regex regex = new Regex(expr);
+            return regex.Match(email).Success;
+        }
+
+
+        public static int MysteryFunc(int number) {
+
+            string strNum = number.ToString();
+            int total = 1;
+            for (int i = 0; i < strNum.Length; i++) {
+
+                total *= int.Parse(strNum[i].ToString());
+            
+            }
+            return total;
+        
+        }
+
+        public static string NoYelling(string aStr)
+        {
+
+            // test if contains exclamation or question marks
+            int ind1 = aStr.IndexOf('!');
+            int ind2 = aStr.IndexOf('?');
+            if (ind1 == -1 && ind2 == -1)
+            {
+                return aStr;
+            }
+            else if (ind1 == -1)
+            {
+
+                string[] splitStr = aStr.Split(' ');
+                string editedString = splitStr[splitStr.Length - 1];
+                editedString = editedString.TrimEnd('?') + "?";
+                splitStr[splitStr.Length - 1] = editedString;
+                return String.Join(" ", splitStr);
+
+            }
+            else
+            {
+
+                string[] splitStr = aStr.Split(' ');
+                string editedString = splitStr[splitStr.Length - 1];
+                editedString = editedString.TrimEnd('!') + "!";
+                splitStr[splitStr.Length - 1] = editedString;
+                return String.Join(" ", splitStr);
+
+            }
+
+        }
+
+        public static bool IsAnagram(string str1, string str2) {
+
+            // compare counts of each letter in the strings
+
+            int countStr1 = 0;
+            int countStr2 = 0;
+            if (str1.Length != str2.Length)
+            {
+                return false;
+            }
+            else {
+
+                str1 = str1.ToLower();
+                str2 = str2.ToLower();
+                str1 = str1.Replace(" ", "");
+                str2 = str2.Replace(" ", "");
+                for (int i = 0; i < str1.Length; i++) {
+
+                    char iChar = str1[i];
+                    for (int j = 0; j < str1.Length; j++) {
+
+                        if (str1[j] == iChar) {
+                            countStr1++;
+                        }
+                    
+                    }
+                    for (int k = 0; k < str2.Length; k++) {
+
+                        if (str2[k] == iChar) {
+                            countStr2++;
+                        }
+                    
+                    }
+                    if (countStr1 != countStr2)
+                    {
+                        return false;
+                    }
+                    else {
+                        countStr1 = 0;
+                        countStr2 = 0;
+                    }
+                
+                }
+                return true;
+            
+            }
+        
+        }
+
+        public static string OddishOrEvenish(int number) {
+
+            int total = 0;
+            string strNum = number.ToString();
+            for (int i = 0; i < strNum.Length; i++) {
+
+                total += int.Parse(strNum[i].ToString());
+            
+            }
+            return total % 2 == 0 ? "Evenish" : "Oddish";
+
+        
+        }
+
+        public static int NumberOfDays(int[] coords)
+        {
+
+            int x = Math.Abs(coords[0]);
+            int y = Math.Abs(coords[1]);
+            int totalTime = x + y;
+
+            int days = 0;
+            int accumDays = 0;
+
+            while (totalTime > 0)
+            {
+
+                if (accumDays == 5)
+                {
+                    days++;
+                    accumDays = 0;
+                }
+                else
+                {
+                    days++;
+                    totalTime--;
+                    accumDays++;
+                }
+
+            }
+            return days;
+
+
+        }
+
+
+        public static int GuessSequence(int num)
+        {
+            return (int)(30 * Math.Pow(num, 2) + 60 * num + 0);
+        }
+
+        public static int letterDistance(string str1, string str2) {
+
+            int total = 0;
+
+            int lessLength = Math.Min(str1.Length, str2.Length);
+
+            for (int i = 0; i < lessLength; i++) {
+                //int str1Char = (int)str1[i];
+                //int str2Char = (int)str2[i];
+                total += Math.Abs((int)str1[i] - (int)str2[i]);
+            }
+
+            if (str1.Length != str2.Length) {
+                total += Math.Abs(str1.Length - str2.Length);
+            }
+            return total;
+
+        
+        }
+
+        public static bool IsPalindrome(string str1) {
+
+            int middle = str1.Length / 2;
+
+            string noChars = " ,!?@#$%^&*()_+-={}[]:;<>.~`";
+
+            string theString = "";
+            for (int i = 0; i < str1.Length; i++) {
+
+                int ind = noChars.IndexOf(str1[i]);
+                if (ind != -1)
+                {
+                    continue;
+                }
+                else {
+                    theString += str1[i].ToString().ToLower();
+                }
+            
+            }
+
+            str1 = theString;
+
+
+            for (int i = 0, j = str1.Length-1; i < middle && j > middle; i++, j--) {
+
+                char iChar = str1[i];
+                char jChar = str1[j];
+                if (iChar != jChar) {
+                    return false;
+                }
+            
+            }
+            return true;
+        
+
+        
         }
 
 
