@@ -522,6 +522,153 @@ namespace FirstProject
 
         }
 
+        public static bool CanFind(string[] arr, string[] arr2) {
+
+            for (int i = 0; i < arr.Length; i++) {
+                bool found = false;
+                string theBigram = arr[i];
+                for (int j = 0; j < arr2.Length; j++) {
+
+                    int ind = arr2[j].IndexOf(theBigram);
+                    if (ind == -1)
+                    {
+                        // not found
+                    }
+                    else {
+                        found = true;
+                    }
+                
+                }
+                if (!found) {
+                    return false;
+                }
+            
+            }
+            return true;
+        }
+
+        public static string AlternatingCaps(string aStr) {
+
+
+            aStr = aStr.ToLower();
+            bool toUpper = true;
+            string letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < aStr.Length; i++) {
+
+                if (letters.IndexOf(aStr[i]) != -1)
+                {
+                    if (toUpper)
+                    {
+                        sb.Append(aStr[i].ToString().ToUpper());
+                        toUpper = false;
+                    }
+                    else
+                    {
+                        sb.Append(aStr[i].ToString().ToLower());
+                        toUpper = true;
+                    }
+                }
+                else {
+                    sb.Append(aStr[i].ToString());
+                }
+            
+            }
+            return sb.ToString();
+        
+        
+        }
+
+
+        public static string TextToNum(string theNum) {
+
+            Dictionary<string, string> theDict = new Dictionary<string, string>();
+
+            theDict.Add("ABC", "2");
+            theDict.Add("DEF","3");
+            theDict.Add("GHI", "4");
+            theDict.Add("JKL", "5");
+            theDict.Add("MNO", "6");
+            theDict.Add("PQRS", "7");
+            theDict.Add("TUV", "8");
+            theDict.Add("WXYZ", "9");
+
+            StringBuilder sb = new StringBuilder();
+
+            string digits = "0123456789-";
+
+
+            for (int i = 0; i < theNum.Length; i++) {
+
+                int ind = digits.IndexOf(theNum[i]);
+                if (ind != -1)
+                {
+                    sb.Append(theNum[i]);
+                }
+                else {
+
+                    foreach (KeyValuePair<string, string> entry in theDict) {
+
+                        int theInd = entry.Key.IndexOf(theNum[i]);
+                        if (theInd != -1) {
+                            sb.Append(entry.Value);
+                            break;
+                        }
+                    
+                    }
+                
+                
+                }
+            
+            }
+            return sb.ToString();
+        }
+
+
+        public static int MajorSum(int[] arr) {
+
+            int zeroCount = 0;
+            int positiveSum = 0;
+            int negativeSum = 0;
+
+            for (int i = 0; i < arr.Length; i++) {
+
+                if (arr[i] > 0)
+                {
+                    positiveSum += arr[i];
+                }
+                else if (arr[i] == 0)
+                {
+                    zeroCount++;
+                }
+                else {
+                    negativeSum += arr[i];
+                }
+            
+            }
+
+            int absNegative = Math.Abs(negativeSum);
+
+            if (absNegative > positiveSum && absNegative > zeroCount)
+            {
+                return negativeSum;
+            }
+            else if (positiveSum > absNegative && positiveSum > zeroCount)
+            {
+
+                return positiveSum;
+
+            }
+            else {
+
+                return zeroCount;
+            }
+
+
+        
+        
+        }
+
         public static int LargestGap(int[] arr) {
 
             Array.Sort(arr);
