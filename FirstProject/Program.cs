@@ -516,11 +516,329 @@ namespace FirstProject
 
             //Console.WriteLine(NumberOfDays(new int[] {10,10}));
 
-            Console.WriteLine(NoYelling("What went wrong?????????"));
+            //Console.WriteLine(NoYelling("What went wrong?????????"));
+
+            //RemoveSmallest(new int[] { 1, 2, 3, 4, 5 });
+
+            //Console.WriteLine(WurstIsBetter("I like chorizos, but not sausages"));
+
+            int[] primes = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97 };
+
+            isPrimeV2(primes, 67);
 
             // page 491
 
         }
+
+        public static int pentagonal(int num) {
+
+
+            return (5 * (int)Math.Pow(num, 2) - 5 * num + 2) / 2;
+        
+        }
+
+        public static int[] TrackRobot(string[] arr) {
+
+            int x = 0;
+            int y = 0;
+
+            foreach (string direction in arr) {
+
+                string dir = direction.Split(' ')[0];
+                int amt = int.Parse(direction.Split(' ')[1]);
+
+                if (dir == "up")
+                {
+                    y += amt;
+                }
+                else if (dir == "left")
+                {
+                    x -= amt;
+                }
+                else if (dir == "right")
+                {
+                    x += amt;
+                }
+                else {
+                    y -= amt;   
+                }
+            
+            }
+            return new int[] { x, y };
+        }
+
+        public static string[] CapMe(string[] names) {
+
+            List<string> newLetters = new List<string>();
+
+            foreach (string eachName in names) {
+
+                string firstCapital = eachName[0].ToString().ToUpper();
+                string restString = eachName.Substring(1).ToLower();
+                newLetters.Add(firstCapital + restString);
+            
+            }
+
+            return newLetters.ToArray();
+        }
+
+        public static string ReverseString(string aStr) {
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = aStr.Length - 1; i >= 0; i--) {
+                sb.Append(aStr[i]);
+            }
+            return sb.ToString();
+        
+        }
+
+        public static string Reverse(string aStr) {
+
+            string[] splitStr = aStr.Split(' ');
+            for (int i = 0; i < splitStr.Length; i++) {
+
+                string word = splitStr[i];
+                if (word.Length >= 5) {
+                    splitStr[i] = ReverseString(word);
+                }
+            
+            }
+            return String.Join(' ', splitStr);
+        
+        }
+
+        // implements BINARY SEARCH
+        public static string isPrimeV2(int[] primes, int num) {
+
+            bool loopVar = true;
+
+            while (loopVar) {
+                int middle = primes.Length / 2;
+                if (primes[middle] == num)
+                {
+                    return "yes";
+                }
+                else if (primes.Length <= 3 && primes[middle] != num)
+                {
+                    return "no";
+                }
+                else if (primes[middle] > num)
+                {
+
+                    int[] newList = new int[middle];
+                    for (int i = 0; i < middle; i++)
+                    {
+                        newList[i] = primes[i];
+                    }
+                    primes = newList;
+
+                }
+                else if (primes[middle] < num)
+                {
+
+                    // erase left
+                    int[] newList = new int[middle];
+                    for (int i = middle+1, j = 0; i < primes.Length; i++, j++)
+                    {
+                        newList[j] = primes[i];
+                    }
+                    primes = newList;
+                }
+                else {
+                    return "no";
+                }
+            
+            }
+            return "no";
+            
+        
+        }
+
+        public static int Integral(int b, int m, int n)
+        {
+            //f(x)=(b+1)*x^b
+
+            int leftSide = b + 1;
+            if (b == 0)
+            {
+                return n - m;
+            }
+            else
+            {
+
+                int fM = (leftSide * (int)Math.Pow(m, leftSide)) / leftSide;
+                int fN = (leftSide * (int)Math.Pow(n, leftSide)) / leftSide;
+
+                return fN - fM;
+
+            }
+
+        }
+
+        public static string WurstIsBetter(string aStr) {
+
+            string[] splitStr = aStr.Split(' ');
+
+            for (int i = 0; i < splitStr.Length; i++) {
+
+                string word = splitStr[i];
+                int ind = 0;
+
+                word = word.ToLower();
+
+                ind = word.IndexOf("chorizo");
+
+                if (ind != -1) {
+                    // word is chorizo
+                    string end = word.Substring(ind + 7);
+                    splitStr[i] = "Wurst" + end;
+                    continue;
+                }
+
+                // apple
+
+
+                ind = word.IndexOf("kielbasa");
+
+                if (ind != -1) {
+                    // word is kielbasa
+                    string end = word.Substring(ind + 8);
+                    splitStr[i] = "Wurst" + end;
+                    continue;
+                }
+
+                ind = word.IndexOf("moronga");
+
+                if (ind != -1) {
+                    // word is moronga
+                    string end = word.Substring(ind + 7);
+                    splitStr[i] = "Wurst" + end;
+                    continue;
+                }
+
+                ind = word.IndexOf("salami");
+
+                if (ind != -1) {
+                    // word is salami
+                    string end = word.Substring(ind + 6);
+                    splitStr[i] = "Wurst" + end;
+                }
+
+                ind = word.IndexOf("sausage");
+
+                if (ind != -1) {
+                    // word is sausage
+                    string end = word.Substring(ind + 7);
+                    splitStr[i] = "Wurst" + end;
+                    continue;
+                }
+
+                ind = word.IndexOf("andouille");
+
+                if (ind != -1) {
+
+                    string end = word.Substring(ind + 9);
+                    string before = word.Substring(0, ind);
+                    splitStr[i] = before + "Wurst" + end;
+                    continue;
+                }
+
+                ind = word.IndexOf("naem");
+
+                if (ind != -1) {
+                    // word is naem
+                    string end = word.Substring(ind + 4);
+                    splitStr[i] = "Wurst" + end;
+                    continue;
+                }
+
+                ind = word.IndexOf("merguez");
+
+                if (ind != -1) {
+                    // word is merguez
+                    string end = word.Substring(ind + 7);
+                    splitStr[i] = "Wurst" + end;
+                    continue;
+                }
+
+                ind = word.IndexOf("gurka");
+
+                if (ind != -1) {
+                    // word is gurka
+                    string end = word.Substring(ind + 5);
+                    splitStr[i] = "Wurst" + end;
+                    continue;
+                }
+
+                ind = word.IndexOf("snorkers");
+
+                if (ind != -1) {
+                    // word is snorkers
+                    string end = word.Substring(ind + 8);
+                    splitStr[i] = "Wurst" + end;
+                    continue;
+                }
+
+                ind = word.IndexOf("pepperoni");
+
+                if (ind != -1) {
+                    // word is pepperoni
+                    string end = word.Substring(ind + 9);
+
+                    splitStr[i] = "Wurst" + end;
+                    continue;
+
+                }
+
+
+            
+            }
+            return String.Join(" ", splitStr);
+
+        
+        }
+
+
+
+
+        public static int[] RemoveSmallest(int[] arr) {
+
+            if (arr.Length == 0) {
+                return new int[] { };
+            }
+
+            int[] tmpArr = new int[arr.Length - 1];
+
+            int minElem = arr[0];
+
+            for (int i = 0; i < arr.Length; i++) {
+
+                minElem = Math.Min(minElem, arr[i]);
+
+            }
+
+            bool foundFirst = false;
+
+            int ind = 0;
+
+            for (int i = 0; i < arr.Length; i++) { 
+                if (arr[i] == minElem && !foundFirst)
+                {
+
+                    foundFirst = true;
+                    continue;
+
+                }
+                else {
+
+                    tmpArr[ind++] = arr[i];
+                
+                }
+            
+            }
+            return tmpArr;
+        }
+
 
         public static bool CanFind(string[] arr, string[] arr2) {
 
@@ -1629,7 +1947,7 @@ namespace FirstProject
         
         }
 
-        public static string Reverse(string aStr) {
+        public static string ReverseV2(string aStr) {
 
             string tmpStr = "";
             for (int i = aStr.Length - 1; i >= 0; i--) {
