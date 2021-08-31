@@ -528,6 +528,115 @@ namespace FirstProject
 
             // page 491
 
+            //CupSwapping(new String[] { "AB", "CA", "AB" });
+
+            Schoty(new string[]{
+                "---OOOOOOOOOO",
+  "---OOOOOOOOOO",
+  "---OOOOOOOOOO",
+  "OOO---OOOOOOO",
+  "O---OOOOOOOOO",
+  "OOOOOOOOO---O",
+  "OO---OOOOOOOO"
+});
+
+        }
+
+        public static int countZeros(string theStr) {
+
+            int zeroCount = 0;
+            for (int i = 0; i < theStr.Length; i++) {
+                char theChar = theStr[i];
+                if (theChar == 'O') {
+                    zeroCount++;
+                }
+            }
+            return zeroCount;
+
+        }
+
+        public static int Schoty(string[] beads) {
+
+            //string num = "0000000";
+            char[] num = { '0', '0', '0', '0', '0', '0', '0' };
+
+            for (int i = 0; i < beads.Length; i++) {
+
+                string[] parts = beads[i].Split("-");
+                if (parts[0] != "") {
+                    // is not empty then count
+                    int cnt = countZeros(parts[0]);
+                    num[i] = cnt.ToString()[0];
+                }
+            
+            }
+            string result = "";
+            for (int i = 0; i < num.Length; i++) {
+                result += num[i].ToString();
+            }
+            return int.Parse(result);
+        
+        }
+
+        public static string CupSwapping(string[] cups)
+        {
+
+            // starts at B --> A B C
+
+            int location = 1;
+            // 0 - a , 1 - b, 2 - c
+
+            Dictionary<char, int> locations = new Dictionary<char, int>();
+            locations.Add('A', 0);
+            locations.Add('B', 1);
+            locations.Add('C', 2);
+
+            for (int i = 0; i < cups.Length; i++)
+            {
+                string swap = cups[i];
+                char firstCup = swap[0];
+                char secondCup = swap[1];
+
+
+                if (location == 0)
+                {
+                    if (firstCup == 'A')
+                    {
+                        location = locations[secondCup];
+                    }
+                    else if (secondCup == 'A')
+                    {
+                        location = locations[firstCup];
+                    }
+                    // ball is in A
+                }
+                else if (location == 1)
+                {
+                    if (firstCup == 'B')
+                    {
+                        location = locations[secondCup];
+                    }
+                    else if (secondCup == 'B')
+                    {
+                        location = locations[firstCup];
+                    }
+                    // ball is in B
+                }
+                else if (location == 2)
+                {
+                    // ball is in C
+                    if (firstCup == 'C')
+                    {
+                        location = locations[secondCup];
+                    }
+                    else if (secondCup == 'C')
+                    {
+                        location = locations[firstCup];
+                    }
+                }
+            }
+            return location == 0 ? "A" : location == 1 ? "B" : "C";
+
         }
 
         public static int pentagonal(int num) {
