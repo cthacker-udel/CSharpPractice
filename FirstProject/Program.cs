@@ -530,6 +530,7 @@ namespace FirstProject
 
             //CupSwapping(new String[] { "AB", "CA", "AB" });
 
+            /*
             Schoty(new string[]{
                 "---OOOOOOOOOO",
   "---OOOOOOOOOO",
@@ -540,6 +541,186 @@ namespace FirstProject
   "OO---OOOOOOOO"
 });
 
+            */
+
+            //Console.WriteLine(MemeSum(122, 81));
+
+            Console.WriteLine(ProductEqualTarget(new int[] { 2, 3, 5 }, 600));
+
+        }
+
+        public static int MemeSum(int num1, int num2)
+        {
+
+            string num1Str = num1.ToString();
+            string num2Str = num2.ToString();
+            if (num1Str.Length < num2Str.Length)
+            {
+                num1Str = num1Str.PadLeft(num2Str.Length, '0');
+            }
+            if (num2Str.Length < num1Str.Length)
+            {
+                num2Str = num2Str.PadLeft(num1Str.Length, '0');
+            }
+            string res = "";
+            for (int i = num1Str.Length - 1; i >= 0; i--)
+            {
+
+                int result = int.Parse(num1Str[i].ToString()) + int.Parse(num2Str[i].ToString());
+                res = result.ToString() + res;
+
+            }
+            return int.Parse(res);
+
+
+        }
+
+        public static string ReverseAndNot(int number) {
+
+            string strNum = number.ToString();
+            string newStr = "";
+            for (int i = strNum.Length - 1; i >= 0; i--) {
+                newStr += strNum[i].ToString();
+            }
+            newStr += strNum;
+            return newStr;
+        
+        }
+
+        public static double[] FindVertex(int a, int b, int c)
+        {
+
+            // h = -b / 2a
+
+            double h = (-1 * b) / (2.0 * a);
+
+            double k = ((4.0 * a * c) - Math.Pow(b, 2)) / (4.0 * a);
+
+            return new double[] { h, k };
+
+        }
+
+
+
+        public static int[] ProductEqualTarget(int[] primes, int target) {
+
+            int a = primes[0];
+            int b = primes[1];
+            int c = primes[2];
+            double res;
+
+            for (int i = 1; ; i++) {
+
+                res = Math.Pow(a, i) * Math.Pow(b, 1) * Math.Pow(c, 1);
+                if(res == target) {
+                    return new int[] { i, 1, 1 };    
+                }
+
+
+                for (int j = 1; ; j++) {
+
+                    res = Math.Pow(a, i) * Math.Pow(b, j) * Math.Pow(c, 1);
+                    if (res > target)
+                    {
+                        break;
+                    }
+                    else if (res == target) {
+                        return new int[] { i, j, 1 };
+                    }
+
+                    for (int k = 1; ; k++) {
+
+                        res = Math.Pow(a, i) * Math.Pow(b, j) * Math.Pow(c, k);
+                        if (res > target)
+                        {
+                            break;
+                        }
+                        else if (res == target) {
+                            return new int[] { i, j, k };
+                        }
+
+                    }
+                
+                }
+
+            }
+        
+        }
+
+        public static string FlipEndChars(object aStr) {
+
+            if (aStr.GetType() != typeof(string))
+            {
+                return "Incompatible.";
+            }
+            string theStr = (string)aStr;
+            if (theStr.Length < 2)
+            {
+                return "Incompatible.";
+            }
+            else if (theStr[0] == theStr[theStr.Length - 1])
+            {
+                return "Two's a pair.";
+            }
+            else {
+                return theStr[theStr.Length - 1] + theStr.Substring(1, theStr.Length - 2) + theStr[0];
+            }
+        
+        }
+
+        public static string Interview(int[] answers, int totalTime) {
+
+            if (totalTime > 120)
+            {
+                return "disqualified";
+            }
+            else {
+
+                if (answers.Length != 8)
+                {
+                    return "disqualified";
+                }
+                else {
+
+                    int[] veryEasy = new int[] { answers[0], answers[1] };
+                    int[] easy = new int[] { answers[2], answers[3] };
+                    int[] medium = new int[] { answers[4], answers[5] };
+                    int[] hard = new int[] { answers[6], answers[7] };
+
+                    bool q1 = veryEasy[0] <= 5;
+                    bool q2 = veryEasy[1] <= 5;
+                    bool q3 = easy[0] <= 10;
+                    bool q4 = easy[1] <= 10;
+                    bool q5 = medium[0] <= 15;
+                    bool q6 = medium[1] <= 15;
+                    bool q7 = hard[0] <= 20;
+                    bool q8 = hard[1] <= 20;
+
+                    return q1 && q2 && q3 && q4 && q5 && q6 && q7 && q8 ? "qualified" : "disqualified";
+
+
+                }
+            
+            }
+        
+        }
+
+        public static string WeekAfter(string date) {
+
+            string[] values = date.Split('/');
+            int d = int.Parse(values[0]);
+            int m = int.Parse(values[1]);
+            int y = int.Parse(values[2]);
+
+            DateTime theDate = new DateTime(y, m, d);
+
+            theDate = theDate.AddDays(7);
+
+            d = theDate.Day;
+            m = theDate.Month;
+            y = theDate.Year;
+            return String.Format("{0}/{1}/{2}", d.ToString().PadLeft(2, '0'), m.ToString().PadLeft(2, '0'), y);
+        
         }
 
         public static int countZeros(string theStr) {
