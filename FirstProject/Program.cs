@@ -545,9 +545,42 @@ namespace FirstProject
 
             //Console.WriteLine(MemeSum(122, 81));
 
-            Console.WriteLine(ProductEqualTarget(new int[] { 2, 3, 5 }, 600));
+            //Console.WriteLine(ProductEqualTarget(new int[] { 2, 3, 5 }, 600));
+
+            //Console.WriteLine(ConvertToHex("hello world"));
+
+            Console.WriteLine(MysteryFunc2(832));
 
         }
+
+        public static int MysteryFunc2(int num) {
+
+            string strNum = num.ToString();
+            List<int> list = new List<int>();
+            for (int i = 0; i < strNum.Length; i++)
+            {
+                list.Add(int.Parse(strNum[i].ToString()));
+            }
+
+            list.Sort();
+            string res = "";
+            foreach (int listNum in list) {
+                res += listNum.ToString();
+            }
+            return num - int.Parse(res);
+        }
+
+        public static int NextPrime(int num) {
+
+            for (int i = num; ; i++) {
+
+                if (isPrime(i)) {
+                    return i;
+                }
+            }
+        
+        }
+
 
         public static int MemeSum(int num1, int num2)
         {
@@ -573,6 +606,51 @@ namespace FirstProject
             return int.Parse(res);
 
 
+        }
+
+        public static string ReverseOdd(string aStr) {
+
+            string[] splitStr = aStr.Split(' ');
+            for (int i = 0; i < splitStr.Length; i++) {
+
+                string res = splitStr[i];
+                if (res.Length % 2 != 0)
+                {
+                    splitStr[i] = String.Join("", res.ToCharArray().Reverse());
+                }
+            
+            }
+            return String.Join(" ", splitStr);
+        
+        }
+
+        public static int SumPrimes(int[] arr) {
+
+            int total = 0;
+            for (int i = 0; i < arr.Length; i++) {
+                if (isPrime(arr[i])) {
+                    total += arr[i];
+                }
+            }
+            return total;
+        
+        }
+
+        public static string ConvertToHex(string aStr) {
+
+            Byte[] byteArr = new byte[aStr.Length];
+
+            for (int i = 0; i < aStr.Length; i++) {
+
+                byteArr[i] = Convert.ToByte(aStr[i]);
+            
+            }
+
+            string result = BitConverter.ToString(byteArr).ToLower();
+
+            return String.Join(' ', result.Split('-'));
+        
+        
         }
 
         public static string ReverseAndNot(int number) {
