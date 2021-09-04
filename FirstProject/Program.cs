@@ -549,8 +549,159 @@ namespace FirstProject
 
             //Console.WriteLine(ConvertToHex("hello world"));
 
-            Console.WriteLine(MysteryFunc2(832));
+            //Console.WriteLine(MysteryFunc2(832));
 
+            //Console.WriteLine(DuplicateCount("abcde"));
+
+            LongestCommonEnding("pitiful", "beautiful");
+
+        }
+
+        public static int DuplicateCount(string aStr)
+        {
+
+            HashSet<char> set = new HashSet<char>();
+            for (int i = 0; i < aStr.Length; i++)
+            {
+
+                char iChar = aStr[i];
+                set.Add(iChar);
+
+            }
+
+            int count = 0;
+            int dupCount = 0;
+            foreach (char letter in set)
+            {
+
+                for (int i = 0; i < aStr.Length; i++)
+                {
+                    char theChar = aStr[i];
+                    if (theChar == letter)
+                    {
+                        count++;
+                    }
+                }
+                if (count > 1)
+                {
+                    dupCount++;
+                    count = 0;
+                }
+                else {
+                    count = 0;
+                }
+
+            }
+            return dupCount;
+
+        }
+
+        public static string LongestCommonEnding(string str1, string str2) {
+
+            int lenOne = str1.Length;
+            int lenTwo = str2.Length;
+            string commonEnding = "";
+
+            if (lenOne > lenTwo)
+            {
+                // hellothere there
+                for (int i = 0; i < str2.Length; i++) {
+                    string substr = str2.Substring(i, str2.Length-i);
+                    if (str1.EndsWith(substr)) {
+                        return substr;
+                    }
+                }
+                return "";
+            }
+            else if (lenOne < lenTwo)
+            {
+                // hello hellothere
+                for (int i = 0; i < str1.Length; i++) {
+                    string substr = str1.Substring(i, str1.Length-i);
+                    if (str2.EndsWith(substr)) {
+                        return substr;
+                    }
+                }
+                return "";
+            }
+            else {
+                // hellothere hellothere
+                for (int i = 0; i < str2.Length; i++) {
+                    string substr = str2.Substring(i, str2.Length-i);
+                    if (str1.EndsWith(substr)) {
+                        return substr;
+                    }
+                }
+                return "";
+            
+            }
+        
+        }
+
+        public static string uncensor(string censored, string letters) {
+
+            string result = "";
+            int ind = 0;
+            for (int i = 0; i < censored.Length; i++) {
+
+                char iChar = censored[i];
+                if (iChar == '*') {
+                    result += letters[ind];
+                    ind++;
+                }
+                else {
+                    result += iChar;
+                }
+            
+            }
+            return result;
+
+        }
+
+        public static int PowerRanger(int num1, int num2, int num3) {
+
+            int count = 0;
+            for (int i = 1; ; i++) {
+
+                double res = Math.Pow(i, num1);
+                if (res >= num2 && res <= num3) {
+                    count++;
+                }
+                if (res > num3) {
+                    break;
+                }
+
+            }
+            return count;
+
+        }
+
+        public static bool Brackets(string expr) {
+
+            LinkedList<char> brackets = new LinkedList<char>();
+
+            for (int i = 0; i < expr.Length; i++) {
+
+                char iChar = expr[i];
+                if (iChar == ')')
+                {
+                    if (brackets.Count == 0)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        brackets.RemoveLast();
+                    }
+                }
+                else if (iChar == '(') {
+                    brackets.AddFirst('(');
+                }
+
+            }
+            return true;
+
+        
         }
 
         public static int MysteryFunc2(int num) {
