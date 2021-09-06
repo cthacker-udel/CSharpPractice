@@ -553,9 +553,248 @@ namespace FirstProject
 
             //Console.WriteLine(DuplicateCount("abcde"));
 
-            LongestCommonEnding("pitiful", "beautiful");
+            //isSmooth("Marta appreciated deep perpendicular right trapezoids");
 
+            //isPalindrome("gggfggg");
+
+            Console.WriteLine(AlmostPalindrome("abcdcbg"));
+
+            Console.WriteLine(AlmostPalindrome("abccia"));
+
+            Console.WriteLine(AlmostPalindrome("abcdaaa"));
+
+            Console.WriteLine(AlmostPalindrome("1234312"));
         }
+
+        public static string repeatV2(char ltr, int times) {
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < times; i++) {
+                sb.Append(ltr.ToString());
+            }
+            return sb.ToString();
+        
+        }
+
+        public static string MysteryFunc(string aStr) {
+
+            string newStr = "";
+
+            for (int i = 0; i < aStr.Length - 1; i += 2) {
+
+                int times = int.Parse(aStr[i + 1].ToString());
+                newStr += repeatV2(aStr[i], times);
+            
+            }
+            return newStr;
+            
+        
+        }
+
+        public static bool isSmooth(string aSentence) {
+
+            string[] splitWords = aSentence.Split(' ');
+
+            for (int i = 0; i < splitWords.Length - 1; i++) {
+
+                string word1 = splitWords[i].ToLower();
+                string word2 = splitWords[i + 1].ToLower();
+                char lastWord1 = word1[word1.Length - 1];
+                if (!word2.StartsWith(lastWord1.ToString())) {
+                    return false;
+                }
+
+
+            }
+            return true;
+        
+        
+        }
+
+        public static bool isPalindrome(string aStr) {
+
+            if (aStr.Length < 2)
+            {
+                return true;
+            }
+            else {
+
+                char firstLetter = aStr[0];
+                char lastLetter = aStr[aStr.Length - 1];
+                if (firstLetter != lastLetter)
+                {
+                    return false;
+                }
+                else {
+                    return isPalindrome(aStr.Substring(1, aStr.Length - 2));
+                }
+
+            }
+        
+        }
+
+        public static bool AlmostPalindrome(string aStr) {
+
+            Dictionary<char, int> letters = new Dictionary<char, int>();
+            if (isPalindrome(aStr))
+            {
+                return false;
+            }
+            else {
+
+                int misHap = 0;
+
+                for (int i = 0; i < aStr.Length / 2; i++) {
+
+                    char ltr = aStr[i];
+                    char ltr2 = aStr[aStr.Length - (i + 1)];
+                    if (ltr != ltr2) {
+                        misHap++;
+                    }
+                
+                }
+                Console.WriteLine("Mishaps : {0}", misHap);
+                return misHap == 1;
+            
+            }
+
+            /*
+            else {
+
+                for (int i = 0; i < aStr.Length; i++) {
+
+                    if (i == aStr.Length / 2) {
+                        continue;
+                    }
+
+                    char theLetter = aStr[i];
+                    int count = 0;
+
+                    for (int j = 0; j < aStr.Length; j++) {
+
+                        if (aStr[j] == theLetter) {
+                            count++;
+                        }
+
+                    }
+                    if (!letters.ContainsKey(theLetter))
+                    {
+                        letters.Add(theLetter, count);
+                    }
+                }
+
+                int evenCount = 0;
+                int oddCount = 0;
+
+                foreach (KeyValuePair<char, int> pair in letters) {
+
+                    char ltr = pair.Key;
+                    int amt = letters[ltr];
+                    if (amt % 2 == 0)
+                    {
+                        evenCount++;
+                    }
+                    else {
+                        if(amt > 1) {
+                            return false;    
+                        }
+                        oddCount++;
+                    }
+                
+                }
+
+                if (oddCount == 2)
+                {
+                    return true;
+                }
+                else {
+                    return false;
+                }
+
+            
+            }
+            */
+        
+        }
+
+        public static int SockPairs(string aStr) {
+
+            Dictionary<string, int> sockPairs = new Dictionary<string, int>();
+
+            HashSet<string> letters = new HashSet<string>();
+
+            for (int i = 0; i < aStr.Length; i++) {
+
+                letters.Add(aStr[i].ToString());
+            
+            }
+
+            int count = 0;
+
+            foreach (string letter in letters) {
+
+                for (int i = 0; i < aStr.Length; i++) {
+
+                    char ltr = aStr[i];
+
+                    if (ltr == letter[0]) {
+                        count++;
+                    }
+                
+                }
+                sockPairs.Add(letter, count);
+                count = 0;
+            
+            }
+
+            int total = 0;
+            foreach(KeyValuePair<string,int> pair in sockPairs) {
+
+                string key = pair.Key;
+                count = (int)Math.Floor(sockPairs[key]*1.0 / 2);
+                total += count;
+            }
+            return total;
+        }
+
+
+        public static long euclidAlgorithm(long a, long b) {
+
+            if (a < b) { 
+                long tmp = a;
+                a = b;
+                b = tmp;
+            }
+
+            long remainder = -1;
+
+            while (remainder != 0) {
+
+                long c = a / b;
+                remainder = a % b;
+                a = b;
+                b = remainder;
+            
+            }
+            return a;
+        }
+
+        public static int LcmOfArray(int[] arr) {
+
+            long ans = arr[0];
+
+            for (int i = 0; i < arr.Length; i++) {
+
+                for (int j = 0; j < arr.Length; j++) {
+
+                    ans = (long)Math.Abs(ans * arr[j]) / euclidAlgorithm(ans, arr[j]);
+                
+                }
+            
+            }
+            return (int)ans;
+        }
+
 
         public static int DuplicateCount(string aStr)
         {
