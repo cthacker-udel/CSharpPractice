@@ -557,13 +557,151 @@ namespace FirstProject
 
             //isPalindrome("gggfggg");
 
-            Console.WriteLine(AlmostPalindrome("abcdcbg"));
+            //Console.WriteLine(AlmostPalindrome("abcdcbg"));
 
-            Console.WriteLine(AlmostPalindrome("abccia"));
+            //Console.WriteLine(AlmostPalindrome("abccia"));
 
-            Console.WriteLine(AlmostPalindrome("abcdaaa"));
+            //Console.WriteLine(AlmostPalindrome("abcdaaa"));
 
-            Console.WriteLine(AlmostPalindrome("1234312"));
+            //Console.WriteLine(AlmostPalindrome("1234312"));
+
+            Console.WriteLine(Gauss(new long[] { 100 }));
+            Console.WriteLine(Gauss(new long[] { 5001, 7000 }));
+        }
+
+        public static string WeekdayRobWasBornInDutch(int yr, int m, int d) {
+
+            CultureInfo info = new System.Globalization.CultureInfo("nl-NL");
+
+            DateTime dateTime = new DateTime(yr, m, d);
+
+            return info.DateTimeFormat.GetDayName(dateTime.DayOfWeek);
+        
+        }
+
+
+        public static long Gauss(long[] arr) {
+
+            if (arr.Length == 2) {
+
+                long dist = Math.Abs(arr[0] - arr[1])+1;
+                return (dist * (long)(Math.Max(arr[0], arr[1]) + Math.Min(arr[0], arr[1]))) / 2;
+
+            }
+            else {
+
+                long n = arr[0];
+
+                return (n * (n + 1)) / 2;
+            
+            }
+
+        }
+
+        public static bool Cons(int[] arr) {
+
+            Array.Sort(arr);
+
+            for (int i = 0; i < arr.Length - 1; i++) {
+
+                if (Math.Abs(arr[i] - arr[i + 1]) != 1) {
+                    return false;
+                }
+            
+            }
+            return true;
+        
+        }
+
+
+        public static bool IsValidHexCode(string hexCode) {
+
+            string expr = "^#[0-9A-Fa-f]{6}$";
+
+            Regex regex = new Regex(expr);
+
+            return regex.IsMatch(hexCode);
+
+        }
+
+        public static int CountOfDigitInStr(string num, string digit) {
+
+            int count = 0;
+
+            for(int i = 0; i < num.Length; i++) {
+
+                if (num[i] == digit[0]) {
+                    count++;
+                }
+            
+            }
+            return count;
+        }
+
+        public static long DigitCount(long num) {
+
+            string result = num.ToString();
+            char[] res2 = num.ToString().ToCharArray();
+
+            Dictionary<char, List<int>> indexes = new Dictionary<char, List<int>>();
+
+            Dictionary<char, int> count = new Dictionary<char, int>();
+
+            //{ 1: [0,3,4], 3: [1], 6: [2,5]}
+
+
+            for (int i = 0; i < result.Length; i++) {
+
+                if (indexes.ContainsKey(result[i]))
+                {
+
+                    indexes[result[i]].Add(i);
+
+                }
+                else {
+
+                    indexes.Add(result[i], new List<int>());
+                    indexes[result[i]].Add(i);
+                
+                }
+
+            }
+
+            // get count of every letter in string
+
+            for (int j = 0; j < result.Length; j++) {
+
+                char ltr = result[j];
+
+                if (!count.ContainsKey(ltr)) {
+
+                    // dictionary
+                    int cnt = CountOfDigitInStr(result, ltr.ToString());
+                    count[ltr] = cnt;
+
+                }
+            
+            }
+
+            for (int i = 0; i < result.Length; i++) {
+
+                char ltr = result[i];
+
+                int ltrCount = count[ltr];
+
+                List<int> ltrIndexes = indexes[ltr];
+
+                foreach (int eachnum in ltrIndexes) {
+
+                    res2[eachnum] = ltrCount.ToString()[0];
+
+                }
+
+            
+            }
+
+            return long.Parse(String.Join("", res2));
+        
         }
 
         public static string repeatV2(char ltr, int times) {
