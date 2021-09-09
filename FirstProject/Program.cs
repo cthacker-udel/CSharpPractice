@@ -565,8 +565,258 @@ namespace FirstProject
 
             //Console.WriteLine(AlmostPalindrome("1234312"));
 
-            Console.WriteLine(Gauss(new long[] { 100 }));
-            Console.WriteLine(Gauss(new long[] { 5001, 7000 }));
+            //Console.WriteLine(Gauss(new long[] { 100 }));
+            //Console.WriteLine(Gauss(new long[] { 5001, 7000 }));
+            //Console.WriteLine(ToSnakeCase("helloEdabit"));
+            ///Console.WriteLine(ToCamelCase("hello_edabit"));
+            //Console.WriteLine(NumType(10744));
+
+            Console.WriteLine(IsParselTongue("Sshe ssselects to eat that apple."));
+        }
+
+        public static bool IsParselTongue(string words) {
+
+            string[] wordSplit = words.Split(' ');
+
+            Regex exp = new Regex("[s]{2,}");
+
+            for (int i = 0; i < wordSplit.Length; i++) {
+
+                bool theMatch = exp.IsMatch(wordSplit[i]);
+
+                if (!theMatch && wordSplit[i].IndexOf('s') != -1) {
+                    return false;
+                }
+
+            }
+            return true;
+
+        
+        }
+
+        public static int sumFactors(int num) {
+
+            int total = 0;
+            for (int i = 1; i < num; i++) {
+
+                if (num % i == 0) {
+                    total += i;
+                }
+
+            }
+            return total;
+        
+        }
+
+        public static string NumType(int num) {
+
+            int sumFactNum = sumFactors(num);
+
+            Console.WriteLine("numbers = {0}", num);
+
+            if (sumFactNum == num)
+            {
+                return "Perfect";
+            }
+
+            if (sumFactors(sumFactNum) == num) {
+                return "Amicable";
+            }
+
+
+            return "Neither";
+        
+        }
+
+        public static int[] TwoProduct(int[] nums, int n) {
+
+            for (int i = 0; i < nums.Length; i++) {
+
+                for (int j = 0; j < nums.Length; j++) {
+
+                    if (i == j)
+                    {
+
+                        continue;
+
+                    }
+                    else {
+
+                        if (nums[i] * nums[j] == n) {
+
+                            return new int[] { Math.Min(nums[i],nums[j]), Math.Max(nums[j],nums[i]) };
+
+                        }
+                    
+                    }
+
+                }
+
+            }
+            return new int[] { };
+
+        
+        }
+
+        public static string[] GetFrame(int width, int height, char theChar) {
+
+            List<string> pieces = new List<string>();
+
+            if (width < 3 || height < 3) {
+
+                return new string[] {"invalid"};
+            
+            }
+
+            for (int i = 0; i < height; i++) {
+                string thePiece = "";
+                if (i != 0 && i != height - 1)
+                {
+
+                    for (int j = 0; j < width; j++)
+                    {
+
+                        if (j != 0 && j != width - 1)
+                        {
+                            thePiece += ' ';
+                        }
+                        else
+                        {
+                            thePiece += theChar;
+                        }
+
+                    }
+                    pieces.Add(thePiece);
+
+                }
+                else {
+
+                    for (int j = 0; j < width; j++) {
+                        thePiece += theChar;
+                    }
+                    pieces.Add(thePiece);
+                
+                }
+
+            }
+            return pieces.ToArray();
+
+        }
+
+        public static bool IsUban(int num) {
+
+            if (num > 999 && num <= 999999)
+            {
+                return false;
+            }
+            else if (num > 999999)
+            {
+                return true;
+            }
+            else if (num > 99)
+            {
+                return false;
+            }
+            else {
+                return num % 10 != 4;
+            }
+        }
+
+
+        public static string ToSnakeCase(string aStr) {
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < aStr.Length; i++) {
+
+                if (aStr[i].ToString().ToUpper()[0] == aStr[i])
+                {
+
+                    sb.Append('_');
+                    sb.Append(aStr[i].ToString().ToLower());
+
+                }
+                else {
+                    sb.Append(aStr[i]);
+                }
+
+            }
+            return sb.ToString();
+
+        }
+
+        public static string ToCamelCase(string aStr) {
+
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < aStr.Length; i += 1) {
+
+                if (i > 0)
+                {
+                    // general implementation
+                    char iChar = aStr[i];
+                    char iPastChar = aStr[i - 1];
+                    if (iPastChar == '_')
+                    {
+                        sb.Append(iChar.ToString().ToUpper());
+                    }
+                    else if (iChar == '_')
+                    {
+                        continue;
+                    }
+                    else {
+                        sb.Append(iChar);
+                    }
+                }
+                else {
+                    sb.Append(aStr[i]);
+                }
+            
+            }
+            return sb.ToString();
+
+
+        
+        }
+
+        public static string AlphabetIndex(string words) {
+
+            string lower = " abcdefghijklmnopqrstuvwxyz";
+            string upper = " ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            List<int> indexes = new List<int>();
+
+            for (int i = 0; i < words.Length; i++) {
+
+                char letter = words[i];
+                int ind1 = lower.IndexOf(letter);
+                int ind2 = upper.IndexOf(letter);
+
+                if (letter == ' ' || (ind1 == -1 && ind2 == -1))
+                {
+
+                    continue;
+
+                }
+                else {
+
+                    if (ind1 == -1)
+                    {
+
+                        indexes.Add(ind2);
+
+                    }
+                    else {
+
+                        indexes.Add(ind1);
+
+                    }
+                
+                }
+            
+            }
+
+            return String.Join(' ', indexes);
+
         }
 
         public static string WeekdayRobWasBornInDutch(int yr, int m, int d) {
