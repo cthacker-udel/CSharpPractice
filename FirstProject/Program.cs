@@ -571,8 +571,243 @@ namespace FirstProject
             ///Console.WriteLine(ToCamelCase("hello_edabit"));
             //Console.WriteLine(NumType(10744));
 
-            Console.WriteLine(IsParselTongue("Sshe ssselects to eat that apple."));
+            Console.WriteLine(ReversedBinaryInteger(10));
         }
+
+        public static int ReversedBinaryInteger(int num)
+        {
+
+            char[] chars = Convert.ToString(num, 2).ToCharArray();
+
+            Array.Reverse(chars);
+
+            string bin = String.Join("",chars);
+
+            return Convert.ToInt32(bin, 2);
+
+        }
+
+        public static bool DoesRhyme(string str1, string str2)
+        {
+
+            str1 = str1.ToLower();
+            str2 = str2.ToLower();
+
+
+            Console.WriteLine("The input is : {0} and {1}", str1, str2);
+
+            string vowels = "aeiouAEIOU";
+
+            string[] splitWords = str1.Split(' ');
+            string[] splitWords2 = str2.Split(' ');
+
+            string lastWord = splitWords[splitWords.Length - 1];
+            string lastWord2 = splitWords2[splitWords2.Length - 1];
+
+            string vowels1 = "";
+            string vowels2 = "";
+
+            Console.WriteLine("lastword1 : {0} and lastWord2 : {1}", lastWord, lastWord2);
+
+            for (int i = 0; i < lastWord.Length; i++)
+            {
+
+                if (vowels.IndexOf(lastWord[i].ToString()) != -1)
+                {
+
+                    // contains vowel
+                    vowels1 += lastWord[i];
+
+                }
+
+            }
+            Console.WriteLine("vowels1 = {0}", vowels1);
+            for (int i = 0; i < lastWord2.Length; i++)
+            {
+
+                if (vowels.IndexOf(lastWord2[i].ToString()) != -1)
+                {
+
+                    vowels2 += lastWord2[i];
+
+                }
+
+            }
+
+            List<char> list1 = new List<char>(vowels1.ToCharArray());
+            List<char> list2 = new List<char>(vowels2.ToCharArray());
+
+            list1.Sort();
+            list2.Sort();
+
+            string res1 = String.Join("", list1);
+            string res2 = String.Join("", list2);
+
+            Console.WriteLine("The resses are 1:{0} and 2:{1}", res1, res2);
+
+            return String.Join("", list1) == String.Join("", list2);
+
+        }
+
+        public static bool Trouble(long num1, long num2) {
+
+            string num1Str = num1.ToString();
+            string num2Str = num2.ToString();
+
+            bool cond1 = false;
+            bool cond2 = false;
+            for (int i = 0; i < num1Str.Length - 2; i++) {
+
+                char iChar = num1Str[i];
+                char jChar = num1Str[i + 1];
+                char kChar = num1Str[i + 2];
+
+                if (iChar == jChar && kChar == jChar) {
+                    cond1 = true;
+                    break;
+                }
+
+            }
+            for (int i = 0; i < num2Str.Length - 1; i++) {
+
+                char iChar = num2Str[i];
+                char jChar = num2Str[i + 1];
+
+                if(iChar == jChar) {
+                    cond2 = true;
+                    break;
+                }
+            
+            }
+            return cond1 && cond2;
+
+            /*
+            HashSet<char> setNum1 = new HashSet<char>();
+            HashSet<char> setNum2 = new HashSet<char>();
+            for (int i = 0; i < num1Str.Length; i++) {
+
+                setNum1.Add(num1Str[i]);
+
+            }
+            for (int j = 0; j < num1Str.Length; j++) {
+
+                setNum2.Add(num2Str[j]);
+            
+            }
+            Dictionary<char, int> occurenceNum1Str = new Dictionary<char, int>();
+            Dictionary<char, int> occurenceNum2Str = new Dictionary<char, int>();
+
+            foreach(char letter in setNum1){
+
+                int count = 0;
+                for (int i = 0; i < num1Str.Length; i++) {
+
+                    if (num1Str[i] == letter) {
+
+                        count++;
+
+                    }
+                
+                
+                }
+                occurenceNum1Str[letter] = count;
+                count = 0;
+            
+            }
+            // formatted occrunceNum1Str
+            foreach (char letter in setNum2) {
+
+                int count = 0;
+                for (int i = 0; i < num2Str.Length; i++) {
+
+                    if (num2Str[i] == letter) {
+
+                        count++;
+                    
+                    }
+                
+                }
+                occurenceNum2Str[letter] = count;
+                count = 0;
+            
+            }
+
+            bool foundCond1 = false;
+            bool foundCond2 = false;
+            foreach(KeyValuePair<char, int> eachpair in occurenceNum1Str) {
+
+                if (eachpair.Value == 3) {
+                    foundCond1 = true;
+                    break;
+                }
+
+            }
+            foreach (KeyValuePair<char, int> eachpair in occurenceNum2Str) {
+
+                if (eachpair.Value == 2) {
+                    foundCond2 = true;
+                    break;
+                }
+
+            }
+            */
+        
+        }
+
+        public static int Legendre(int p, int n) {
+
+            int pow = 1;
+
+            int total = 0;
+            while (Math.Pow(p, pow) <= n) {
+
+                total += (int)(n / Math.Pow(p, pow));
+                pow++;
+
+            }
+            return total;
+        
+        
+        }
+
+        public static string TextToNumberBinary(string aStr) {
+
+            aStr = aStr.ToLower();
+
+            string[] words = aStr.Split(' ');
+
+            LinkedList<string> mutableList = new LinkedList<string>();
+
+            for (int i = 0; i < words.Length; i++) {
+
+                string theWord = words[i];
+
+                if (theWord == "zero")
+                {
+
+                    mutableList.AddLast("0");
+
+                }
+                else if (theWord == "one") {
+
+                    mutableList.AddLast("1");
+
+                }
+            
+            }
+
+            while (mutableList.Count % 8 != 0) {
+
+                mutableList.RemoveLast();
+
+            }
+
+            return String.Join("", mutableList);
+        
+        
+        }
+
+
 
         public static bool IsParselTongue(string words) {
 
@@ -582,9 +817,11 @@ namespace FirstProject
 
             for (int i = 0; i < wordSplit.Length; i++) {
 
+                wordSplit[i] = wordSplit[i].ToLower();
+
                 bool theMatch = exp.IsMatch(wordSplit[i]);
 
-                if (!theMatch && wordSplit[i].IndexOf('s') != -1) {
+                if (!theMatch && wordSplit[i].StartsWith("s")) {
                     return false;
                 }
 
@@ -592,6 +829,26 @@ namespace FirstProject
             return true;
 
         
+        }
+
+        public static double AverageWordLength(string words) {
+
+            Regex regex = new Regex("\\w+");
+
+            MatchCollection collection = regex.Matches(words);
+
+            int totalLength = 0;
+            int wordCount = words.Split(" ").Length;
+
+            foreach (Match word in collection) {
+
+                totalLength += word.Value.Length;
+            
+            }
+
+            return Math.Round((totalLength * 1.0 / wordCount), 2);
+
+
         }
 
         public static int sumFactors(int num) {
