@@ -576,6 +576,98 @@ namespace FirstProject
             Console.WriteLine(Cal(150));
         }
 
+        public static string StringFactor(int[] arr) {
+
+            Dictionary<int, int> count = new Dictionary<int, int>();
+            List<string> theList = new List<string>();
+
+            for (int i = 0; i < arr.Length; i++) {
+
+                int arrVal = arr[i];
+                if (count.ContainsKey(arrVal))
+                {
+                    count[arrVal] += 1;
+                }
+                else {
+                    count[arrVal] = 1;
+                }
+            
+            }
+            string retString = "";
+
+            foreach (KeyValuePair<int,int> pair in count) { 
+            
+                int theBase = pair.Key;
+                int pow = pair.Value;
+                if(pow == 1)
+                {
+                    theList.Add(theBase.ToString());
+                }
+                else
+                {
+                    string formattedString = string.Format("{0}^{1}", theBase, pow);
+                    theList.Add(formattedString);
+                }
+            }
+            return String.Join(" x ", theList);
+
+
+        
+        }
+
+        public static bool isPrime(int num) {
+
+            if (num <= 2)
+            {
+                return true;
+            }
+            else if (num == 3 || num == 5)
+            {
+                return true;
+            }
+            else if (num % 3 == 0 || num % 5 == 0)
+            {
+                return false;
+            }
+            else {
+
+                int sqrt = (int)Math.Sqrt(num);
+                for (int i = 2; i <= sqrt; i++) {
+                    if (num % i == 0) {
+                        return false;
+                    }
+                }
+                return true;
+            
+            }
+        
+        }
+
+        public static string Moran(int num) {
+
+            int total = 0;
+            string numStr = num.ToString();
+            for (int i = 0; i < numStr.Length; i++) {
+
+                total += int.Parse(numStr[i].ToString());
+
+            }
+            int res = num / total;
+            if (isPrime(res))
+            {
+                return "M";
+            }
+            else if (num % total == 0)
+            {
+                return "H";
+            }
+            else {
+                return "Neither";
+            }
+
+        
+        }
+
         public static int AddBill(string aStr) {
 
             string[] splitStr = aStr.Split(", ");
