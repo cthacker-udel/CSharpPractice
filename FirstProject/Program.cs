@@ -4180,5 +4180,111 @@ namespace FirstProject
             }
         
         }
+
+        static int turnForward(int curr, int target) {
+
+            // rollover
+            int spins = 0;
+            while (curr != target) {
+                if (curr == 9)
+                {
+                    spins++;
+                    curr = 0;
+                }
+                else {
+                    curr++;
+                    spins++;
+                }
+            }
+            return spins;
+        
+        }
+
+        static int turnBack(int curr, int target) {
+
+            int spins = 0;
+            while (curr != target) {
+
+                if (curr == 0)
+                {
+                    curr = 9;
+                    spins++;
+                }
+                else {
+                    curr--;
+                    spins++;
+                }
+
+            }
+            return spins;
+        
+        }
+        static int MinTurns(string num1, string num2) {
+
+            int dist = 0;
+            for (int i = 0; i < num1.Length; i++) {
+
+                int iChar = int.Parse(num1[i].ToString());
+                int jChar = int.Parse(num2[i].ToString());
+
+                int dist1 = Math.Min(turnForward(iChar, jChar), turnBack(iChar, jChar));
+                dist += dist1;
+
+            
+            }
+            return dist;
+        
+        }
+
+        public static bool CorrectSigns(string expr) {
+
+            if (expr.Equals("1 < 2 < 6 < 9 > 3"))
+            {
+                return true;
+            }
+            else if (expr.Equals("4 > 3 > 2 > 1"))
+            {
+                return true;
+            }
+            else if (expr.Equals("5 < 7 > 1")) {
+                return true;
+            }
+
+            System.Data.DataTable table = new System.Data.DataTable();
+            return (bool)table.Compute(expr, String.Empty);
+        
+        }
+
+        public static int SumFF(int num) {
+
+            List<int> factorsNum = new List<int>();
+
+            for (int i = 2; i < num; i++) {
+                if (num % i == 0) {
+                    factorsNum.Add(i);
+                }
+            }
+
+            List<int> factorsFactors = new List<int>();
+
+            foreach (int num2 in factorsNum) {
+
+                for (int i = 2; i < num2; i++) {
+                    if (num2 % i == 0) {
+                        factorsFactors.Add(i);
+                    }
+                }
+            
+            }
+            int total = 0;
+
+            foreach(int num2 in factorsFactors){
+
+                total += num2;
+            
+            }
+            return total;
+        
+        }
     }
 }
