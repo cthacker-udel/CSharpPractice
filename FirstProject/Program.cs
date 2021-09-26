@@ -574,6 +574,132 @@ namespace FirstProject
             Console.WriteLine(CommentsCorrect("///*/**/"));
 
             Console.WriteLine(Cal(150));
+
+            Console.WriteLine(Fibonnaci(10));
+
+            MysteryFunc22(24);
+        }
+
+        public static int[] TrackRobot(int[] movements) {
+
+            int direction = 0; // 0: N, 1: E, 2: S, 3: W
+
+            int y = 0;
+            int x = 0;
+
+            for (int i = 0; i < movements.Length; i++) {
+
+                if (direction == 0)
+                {
+
+                    y += movements[i];
+                    direction = 1;
+
+                }
+                else if (direction == 1)
+                {
+
+                    x += movements[i];
+                    direction = 2;
+
+                }
+                else if (direction == 2)
+                {
+
+                    y -= movements[i];
+                    direction = 3;
+
+                }
+                else if (direction == 3) {
+
+                    x -= movements[i];
+                    direction = 0;
+                
+                }
+            
+            
+            }
+            return new int[] { x, y };
+        
+        
+        }
+
+        public static string Collatz(int a, int b) {
+
+            int aSteps = 0;
+            int bSteps = 0;
+
+            while(a != 1)
+            {
+                if (a % 2 == 0)
+                {
+
+                    a /= 2;
+
+                }
+                else {
+
+                    a = (a * 3) + 1;
+                
+                
+                }
+                aSteps++;
+
+
+            }
+            while (b != 1) {
+
+                if (bSteps > aSteps)
+                {
+                    return "a";
+                }
+                else if (b % 2 == 0)
+                {
+                    b /= 2;
+                }
+                else {
+                    b = (b * 3) + 1;
+                }
+                bSteps++;
+            
+            }
+            return "b";
+        
+        
+        }
+
+        public static string Fibonnaci(int number) {
+
+            List<BigInteger> fib = new List<BigInteger>(new BigInteger[] { 0, 1 });
+            while (fib.Count <= number) {
+
+                fib.Add(fib[fib.Count - 1] + fib[fib.Count - 2]);
+
+            }
+            return fib[number].ToString();
+        }
+
+        public static int MysteryFunc22(int num) {
+
+            int num2 = 2;
+            int cnt = 0;
+            int inc = 1;
+            int diff = 0;
+            while (true) {
+
+                if (Math.Pow(num2, inc) >= num) {
+                    diff = num - (int)Math.Pow(num2, inc - 1);
+                    break;
+                }
+                inc++;
+                cnt++;
+            
+            }
+
+            Console.WriteLine(String.Format("The cnt is {0} and the diff is : {1}", cnt, diff));
+
+            return int.Parse("2".PadRight(cnt, '2') + diff.ToString());
+        
         }
 
         public static string StringFactor(int[] arr) {
@@ -3137,31 +3263,31 @@ namespace FirstProject
 
         }
 
-        public static bool isPrime(int num) {
+        //public static bool isPrime(int num) {
 
-            if (num < 2)
-            {
-                return false;
-            }
-            else if (num == 2 || num == 3 || num == 5)
-            {
-                return true;
-            }
-            else if (num % 2 == 0 || num % 3 == 0 || num % 5 == 0)
-            {
-                return false;
-            }
-            else {
-                int sqrt = ((int)Math.Sqrt(num))+1;
-                for (int i = 2; i < sqrt; i++) {
-                    if (num % i == 0) {
-                        return false;
-                    }
-                }
-                return true;
-            }
+        //    if (num < 2)
+         //   {
+          //      return false;
+            //}
+            //else if (num == 2 || num == 3 || num == 5)
+            //{
+            //    return true;
+            //}
+            //else if (num % 2 == 0 || num % 3 == 0 || num % 5 == 0)
+            //{
+            //    return false;
+            //}
+            //else {
+             //   int sqrt = ((int)Math.Sqrt(num))+1;
+              //  for (int i = 2; i < sqrt; i++) {
+              //      if (num % i == 0) {
+              //          return false;
+              //      }
+              //  }
+              //  return true;
+            //}
         
-        }
+        //}
 
         public static bool KToK(string n, int k) {
 
