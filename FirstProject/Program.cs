@@ -580,6 +580,63 @@ namespace FirstProject
             MysteryFunc22(24);
         }
 
+        public static string[] SplitNCases(string word, int len) {
+
+            if (len <= 0 || len > word.Length || (((1.0*word.Length) / len) % 1 != 0)) {
+                return new string[] { "Error" };
+            }
+
+            int subLength = word.Length / len;
+
+            List<string> subcases = new List<string>();
+            string emptyString = "";
+            for (int i = 0; i < word.Length; i++) {
+                if (emptyString.Length == subLength)
+                {
+                    subcases.Add(emptyString);
+                    emptyString = word[i].ToString();
+                }
+                else {
+                    emptyString += word[i].ToString();
+                }
+            }
+            if (emptyString.Length > 0) {
+                subcases.Add(emptyString);
+            }
+            return subcases.ToArray();
+        
+        }
+
+        public static int BridgesII(string bridge) {
+
+            string[] splitBridge = bridge.Split('/');
+            int count = 0;
+            foreach(string part in splitBridge)
+            {
+
+                if (part.Replace("#", "").Length == 0) {
+                    count++;
+                }
+
+            }
+            string emptyString = "";
+            for (int i = 0; i < splitBridge[0].Length; i++) {
+
+                for (int j = 0; j < splitBridge.Length; j++) {
+
+                    emptyString += splitBridge[j][i];
+
+                }
+                if (emptyString.Replace("#", "").Length == 0) {
+                    count++;
+                }
+                emptyString = "";
+            
+            }
+            return count;
+        
+        }
+
         public static int[] TrackRobot(int[] movements) {
 
             int direction = 0; // 0: N, 1: E, 2: S, 3: W
