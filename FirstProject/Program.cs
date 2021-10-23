@@ -578,6 +578,53 @@ namespace FirstProject
             Console.WriteLine(Fibonnaci(10));
 
             MysteryFunc22(24);
+
+            Mangle("Fun times!");
+        }
+
+        public static string Mangle(string word) {
+
+            string alpha = "abcdefghijklmnopqrstuvwxyz";
+            string vowels = "aeiouAEIOU";
+
+            char[] letters = word.ToCharArray();
+
+            for (int i = 0; i < word.Length; i++) {
+
+                if (word[i].ToString().ToLower()[0] == alpha[25])
+                {
+
+                    letters[i] = 'A';
+
+                }
+                else if(alpha.Contains(word[i].ToString().ToLower())) {
+
+                    int ind = alpha.IndexOf(word[i].ToString().ToLower()[0]);
+                    if (word[i].ToString().ToUpper()[0] == word[i]) {
+
+                        char ltr = alpha[ind + 1].ToString().ToUpper()[0];
+                        letters[i] = ltr;
+
+                    }
+                    else {
+
+                        char ltr = alpha[ind + 1];
+                        if (vowels.Contains(alpha[ind + 1].ToString().ToLower()))
+                        {
+                            letters[i] = ltr.ToString().ToUpper()[0];
+                        }
+                        else
+                        {
+                            letters[i] = ltr;
+                        }
+
+                    }
+
+                }
+            
+            }
+            return String.Join("", letters);
+        
         }
 
         public static string[] SplitNCases(string word, int len) {
